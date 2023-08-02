@@ -1,0 +1,51 @@
+.promo {
+    margin: auto;
+    display: flex;
+    max-width: 1280px;
+    height: 524px;
+}
+
+.promo__container {
+    margin-top: 75px;
+    padding-left: 70px;
+    flex-direction: column;
+    max-width: 640px;
+    height: 424px;
+}
+
+.promo__logo {
+    margin: 75px 70px auto auto;
+    width: 310px;
+    height: 304px;
+}
+
+.promo__container_button {
+    margin-top: 146px;
+    width: 130px;
+    height: 36px;
+    background: inherit;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    border-radius: 3px;
+    border: 1px solid #000;
+}
+
+.promo__title {
+    margin: 0 0 36px auto;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+}
+
+.promo__subtitle {
+    margin: 0 auto 0 0;
+    max-width: 310px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    opacity: 0.5;
+}
