@@ -2,5 +2,6 @@
 @import url(./vendor/fonts/fonts.css);
 @import url(./components/Header/Header.css);
 @import url(./components/Page/Page.css);
-@import url(./components//Main/Promo.css);
-@import url(./components/Main/AboutProject.css);
+@import url(./components/Promo/Promo.css);
+@import url(./components/AboutProjects/AboutProject.css);
+@import url(./components/Techs/Techs.css);

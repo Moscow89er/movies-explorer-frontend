@@ -16,13 +16,13 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    border-bottom: 1px solid;
+    border-bottom: 2px solid;
 }
 
 .about__container {
     width: 1140px;
     margin-top: 70px;
-    margin-bottom: 110px;
+    margin-bottom: 98px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
