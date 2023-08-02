@@ -10,7 +10,7 @@ function Promo () {
                 </div>
                 <button className="promo__container_button">Узнать больше</button>
             </div>
-            <img className="promo__logo" src={promoLogo} alt="Изображение сгрупированных слов Web в виде земного шара"></img>
+            <img className="promo__logo" src={promoLogo} alt="Изображение сгрупированных слов Web в виде земного шара" />
         </section>
     )
 }
