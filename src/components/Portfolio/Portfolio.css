@@ -32,6 +32,7 @@
 
 .portfolio__container:last-of-type {
     border-bottom: none;
+    padding-bottom: 103px;
 }
 
 .portfolio__container_title {
