@@ -8,7 +8,8 @@
 }
 
 .about-me__title {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     margin: 0;
     padding-top: 110px;
     padding-bottom: 24px;
@@ -20,7 +21,8 @@
 }
 
 .about-me__container {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     margin-top: 66px;
     margin-bottom: 10px;
     display: flex;
@@ -29,7 +31,8 @@
 }
 
 .about-me__container-text {
-    width: 600px;
+    width: 60%;
+    max-width: 600px;
     flex-direction: column;
 }
 
@@ -51,7 +54,7 @@
 
 .about-me__container-text_paragraph {
     margin: 26px auto 0 auto;
-    width: 598px;
+    max-width: 598px;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

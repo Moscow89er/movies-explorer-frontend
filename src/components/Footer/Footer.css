@@ -8,7 +8,8 @@
 }
 
 .footer__title {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     margin: 80px auto 0 auto;
     padding-bottom: 20px;
     text-align: center;
@@ -21,7 +22,8 @@
 }
 
 .footer__container {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     height: 56px;
     display: flex;
     flex-direction: row;

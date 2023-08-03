@@ -8,7 +8,8 @@
 }
 
 .about-projects__title {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     margin: 0;
     padding-top: 110px;
     padding-bottom: 22px;
@@ -20,7 +21,8 @@
 }
 
 .about-projects__container {
-    width: 1140px;
+    width: 90%;
+    max-width: 1140px;
     margin-top: 70px;
     margin-bottom: 98px;
     display: flex;
@@ -33,7 +35,8 @@
 }
 
 .about-projects__container_subtitle {
-    width: 550px;
+    width: 45%;
+    max-width: 550px;
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -45,7 +48,8 @@
 }
 
 .about-projects__container_paragraph {
-    width: 550px;
+    width: 45%;
+    max-width: 550px;
     margin: 26px 0 0;
     font-size: 14px;
     font-style: normal;
@@ -59,7 +63,8 @@
 
 .about-projects__container_one-week {
     margin: 0;
-    width: 228px;
+    width: 20%;
+    max-width: 228px;
     height: 36px;
     color: #FFF;
     text-align: center;
@@ -75,7 +80,8 @@
 
 .about-projects__container_four-week {
     margin: 0;
-    width: 912px;
+    width: 80%;
+    max-width: 912px;
     height: 36px;
     color: #000;
     text-align: center;
@@ -91,7 +97,8 @@
 
 .about-projects__container_backend {
     margin: 14 0 0;
-    width: 228px;
+    width: 20%;
+    max-width: 228px;
     color: #A0A0A0;
     text-align: center;
     display: flex;
@@ -105,7 +112,8 @@
 
 .about-projects__container_frontend {
     margin: 14px 0 0;
-    width: 912px;
+    width: 80%;
+    max-width: 912px;
     color: #A0A0A0;
     display: flex;
     justify-content: center;

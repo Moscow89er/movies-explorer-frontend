@@ -34,6 +34,7 @@
 
 .header__link_sign-up {
     margin-right: 30px;
+    padding: 0;
     width: 78px;
     color: #000;
     background: inherit;
@@ -42,4 +43,14 @@
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+}
+
+@media (max-width: 920px) {
+    .header__logo {
+        padding-left: 30px;
+    }
+
+    .header__container {
+        margin-right: 28px;
+    }
 }
