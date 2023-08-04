@@ -66,3 +66,36 @@
 .techs__list_item:first-of-type {
     margin-left: 10px;
 }
+
+@media (max-width: 920px) {
+    .techs__title {
+        max-width: 668px;
+        padding-top: 90px;
+        padding-bottom: 25px;
+        font-size: 21px;
+    }
+
+    .techs__container_title {
+        margin-top: 80px;
+    }
+
+    .techs__container_subtitle {
+        margin: 20px auto 80px;
+        font-size: 11px;
+    }
+
+    .techs__list {
+        margin: 0 60px;
+    }
+
+    .techs__list_item {
+        width: 84px;
+        height: 57px;
+        margin: 0 10px 90px 0;
+        font-size: 12px;
+    }
+
+    .techs__list_item:first-of-type {
+        margin: 0 10px 90px 10px;
+    }
+}
