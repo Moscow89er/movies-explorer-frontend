@@ -54,3 +54,18 @@
     width: 18px;
     height: auto;
 }
+
+@media (max-width: 920px) {
+    .portfolio__title {
+        max-width: 668px;
+        padding-top: 80px;
+    }
+
+    .portfolio__container {
+        max-width: 668px;
+    }
+
+    .portfolio__container_title {
+        font-size: 26px;
+    }
+}
