@@ -17,7 +17,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid;
 }
 
 .about-projects__container {
@@ -44,7 +44,7 @@
 }
 
 .about-projects__container_subtitle:first-of-type {
-    margin-right: 40px;
+    margin-right: 78px;
 }
 
 .about-projects__container_paragraph {
@@ -58,7 +58,7 @@
 }
 
 .about-projects__container_paragraph:first-of-type {
-    margin-right: 40px;
+    margin-right: 78px;
 }
 
 .about-projects__container_one-week {
@@ -121,4 +121,54 @@
     font-style: normal;
     font-weight: 500;
     line-height: 17px;
+}
+
+@media (max-width: 920px) {
+    .about-projects__title {
+        max-width: 668px;
+        padding-top: 90px;
+        padding-bottom: 25px;
+        font-size: 21px;
+    }
+
+    .about-projects__container {
+        max-width: 668px;
+        margin-top: 49px;
+        margin-bottom: 76px;
+    }
+
+    .about-projects__container:first-of-type {
+        margin-top: 70px;
+    }
+
+    .about-projects__container_subtitle:first-of-type {
+        margin-right: 47px;
+    }
+
+    .about-projects__container_paragraph:first-of-type {
+        min-width: 320px;
+        font-size: 12px;
+        margin: 22px 29px 0 0;
+    }
+
+    .about-projects__container_paragraph {
+        font-size: 12px;
+        margin: 22px 0 0;
+    }
+
+    .about-projects__container_one-week {
+
+    }
+
+    .about-projects__container_four-week {
+
+    }
+
+    .about-projects__container_backend {
+
+    }
+
+    .about-projects__container_frontend {
+
+    }
 }
