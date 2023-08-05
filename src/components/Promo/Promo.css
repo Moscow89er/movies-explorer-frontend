@@ -87,3 +87,28 @@
         line-height: normal;
     }
 }
+
+@media (max-width: 920px) {
+    .promo {
+        margin-bottom: 30px;
+    }
+
+    .promo__logo {
+        margin-top: 70px;
+        width: 210px;
+        height: 206px;
+    }
+
+    .promo__container {
+        margin-top: 44px;
+    }
+
+    .promo__title {
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .promo__container_button {
+        margin-top: 83px;
+    }
+}

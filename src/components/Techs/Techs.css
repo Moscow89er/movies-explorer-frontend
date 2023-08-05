@@ -99,3 +99,11 @@
         margin: 0 10px 90px 10px;
     }
 }
+
+@media (max-width: 668px) {
+    .techs__list_item {
+        width: 74px;
+        height: 40px;
+        font-size: 10px;
+    }
+}

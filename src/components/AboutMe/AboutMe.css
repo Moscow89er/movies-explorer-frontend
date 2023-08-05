@@ -122,3 +122,15 @@
         height: 307px;
     }
 }
+
+@media (max-width: 668px) {
+    .about-me__container-text {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 625px) {
+    .about-me__container-text_link {
+        margin-top: 70px;
+    }
+}

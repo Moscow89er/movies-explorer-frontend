@@ -16,7 +16,6 @@
 
 .header__container {
     margin-right: 70px;
-    width: 186px;
 }
 
 .header__link_sign-in {
@@ -52,5 +51,26 @@
 
     .header__container {
         margin-right: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header__logo {
+        padding-left: 14px;
+    }
+
+    .header__container {
+        margin-right: 14px;
+    }
+
+    .header__link_sign-up {
+        font-size: 10px;
+        margin-right: 8px;
+    }
+
+    .header__link_sign-in {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
     }
 }
