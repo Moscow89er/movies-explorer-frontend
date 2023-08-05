@@ -69,3 +69,29 @@
         font-size: 26px;
     }
 }
+
+@media (max-width: 600px) {
+    .portfolio__title {
+        padding-top: 60px;
+        padding-bottom: 22px;
+        font-size: 14px;
+    }
+
+    .portfolio__container {
+        height: 66px;
+    }
+
+    .portfolio__container_title {
+        font-size: 17px;
+        line-height: 28px;
+    }
+
+    .portfolio__container_image {
+        width: 10px;
+        margin: auto;
+    }
+
+    .portfolio__container:last-of-type {
+        padding-bottom: 66px;
+    }
+}

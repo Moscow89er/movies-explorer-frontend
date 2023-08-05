@@ -11,7 +11,7 @@
     width: 90%;
     max-width: 1140px;
     margin: 0;
-    padding-top: 100px;
+    padding-top: 116px;
     padding-bottom: 24px;
     font-size: 21px;
     font-style: normal;
@@ -70,7 +70,7 @@
 @media (max-width: 920px) {
     .techs__title {
         max-width: 668px;
-        padding-top: 90px;
+        padding-top: 105px;
         padding-bottom: 25px;
         font-size: 21px;
     }
@@ -105,5 +105,44 @@
         width: 74px;
         height: 40px;
         font-size: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .techs__title {
+        max-width: 284px;
+        font-size: 17px;
+        padding-top: 69px;
+        padding-bottom: 29px;
+    }
+
+    .techs__container_title {
+        font-size: 29px;
+        margin-top: 50px;
+    }
+
+    .techs__container_subtitle {
+        max-width: 284px;
+        font-size: 10px;
+        margin: 10px auto 43px;
+    }
+
+    .techs__list {
+        max-width: 284px;
+        display: grid;
+        grid-template-columns: repeat(2, 84px);
+        grid-template-rows: repeat(4, 57px);
+        gap: 10px;
+        margin: 0 auto 70px;
+    }
+
+    .techs__list_item {
+        width: 84px;
+        height: 57px;
+        font-size: 12px;
+    }
+    .techs__list_item:first-of-type {
+        margin: 0 auto;
+        font-size: 12px;
     }
 }
