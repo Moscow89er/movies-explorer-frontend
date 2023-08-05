@@ -1,0 +1,90 @@
+.nav-tab {
+    width: 100%;
+    max-width: 1040px;
+    margin-right: 70px;
+    margin-left: 58px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-tab__button_up {
+    width: 76px;
+    height: 32px;
+    color: #fff;
+    background: #3456F3;
+    border-radius: 3px;
+    border: 1px solid #3456F3;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.nav-tab__button_in {
+    margin-right: 30px;
+    padding: 0;
+    width: 78px;
+    background: inherit;
+    border: none;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.nav-tab__container {
+    margin-left: 0;
+    width: 100%;
+    max-width: 1040px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-tab__container_button {
+    padding: 0;
+    background: inherit;
+    border: none;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.nav-tab__container_button:first-of-type {
+    margin-right: 32px;
+}
+
+.nav-tab__button_acc {
+    width: 100px;
+    height: 32px;
+    background: #F4F4F4;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    border-radius: 20px;
+    border: none;
+}
+
+@media (max-width: 920px) {
+    .nav-tab {
+        margin-right: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-tab {
+        margin-right: 14px;
+    }
+
+    .nav-tab__button_up {
+        font-size: 10px;
+        margin-right: 8px;
+    }
+
+    .nav-tab__button_in {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+    }
+}
