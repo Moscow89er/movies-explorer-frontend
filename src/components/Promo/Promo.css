@@ -29,6 +29,10 @@
     border: 1px solid #000;
 }
 
+.promo__container_button:hover {
+    cursor: pointer;
+}
+
 .promo__title {
     margin: 0 0 36px auto;
     font-size: 50px;

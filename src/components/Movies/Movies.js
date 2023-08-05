@@ -1,7 +1,9 @@
+import SearchForm from "../SearchForm/SearchForm";
+
 function Movies () {
     return (
-        <section>
-
+        <section className="movies">
+            <SearchForm />
         </section>
     )
 }
