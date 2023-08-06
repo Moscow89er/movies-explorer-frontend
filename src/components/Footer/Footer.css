@@ -61,10 +61,6 @@
 }
 
 @media (max-width: 920px) {
-    .footer__title {
-        margin-top: 46px;
-    }
-
     .footer__container {
         width: 100%;
         max-width: 708px;

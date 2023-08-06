@@ -68,6 +68,10 @@
     .portfolio__container_title {
         font-size: 26px;
     }
+
+    .portfolio__container:last-of-type {
+        padding-bottom: 67px;
+    }
 }
 
 @media (max-width: 600px) {

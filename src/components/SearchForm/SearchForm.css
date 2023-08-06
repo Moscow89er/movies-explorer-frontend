@@ -102,3 +102,34 @@
 .search__container_checkbox-input:checked + .search__container_checkbox-text:after {
 	left: 18px;
 }
+
+@media (max-width: 920px) {
+  .search__form {
+    width: 92%;
+    max-width: 768px;
+    margin: 80px auto 0;
+    padding: 0 0 13px;
+  }
+
+  .search__container {
+    width: 92%;
+    max-width: 768px;
+    flex-direction: row-reverse;
+  }
+  .search__container_checkbox-text {
+    line-height: 14px;
+    padding: 0 50px 0 0px;
+  }
+
+  .search__container_checkbox-text:before {
+    left: 130px;
+  }
+
+  .search__container_checkbox-text:after {
+    left: 132px;
+  }
+
+  .search__container_checkbox-input:checked + .search__container_checkbox-text:after {
+    left: 148px;
+  }
+}
