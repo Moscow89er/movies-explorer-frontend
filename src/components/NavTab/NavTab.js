@@ -3,10 +3,13 @@ import navTabLogo from "../../images/blue_logo.svg";
 
 function NavTab () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOverlay, setIsOverlay] = useState(false);
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
 
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        const newState = !isMenuOpen;
+        setIsMenuOpen(newState);
+        setIsOverlay(newState);
     };
 
     useEffect(() => {
@@ -21,8 +24,8 @@ function NavTab () {
                 <img className="nav-tab__logo" src={navTabLogo} alt="Изображение логотипа в виде синего цветка" />
                     {
                         windowDimensions < 820
-                        ?
-                            <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`} onClick={toggleMenu} />
+                        ?   
+                            <div className={`nav-tab__button ${isMenuOpen ? "nav-tab__button_clicked" : ""}`} onClick={toggleMenu} />
                         :
                         <>
                             <div className="nav-tab__links">
@@ -33,6 +36,18 @@ function NavTab () {
                         </>
                     }
             </div>
+            <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`}>
+                <button className="nav-tab__button_close" onClick={toggleMenu}></button>
+                <div className="nav-tab__links">
+                    <button className="nav-tab__links_button">Главная</button>
+                    <button className="nav-tab__links_button">Фильмы</button>
+                    <button className="nav-tab__links_button">Сохранённые фильмы</button>
+                </div>
+                <button className="nav-tab__button_acc">Аккаунт</button>
+            </div>
+            {
+                isOverlay && <div className='nav-tab__overlay' />
+            }
         </div>
     )
 }
