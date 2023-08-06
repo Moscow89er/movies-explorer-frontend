@@ -1,25 +1,38 @@
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import navTabLogo from "../../images/blue_logo.svg";
 
 function NavTab () {
-    const location = useLocation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    useEffect(() => {
+        const handleResize = () => setWindowDimensions(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <div className="nav-tab">
-            { location.pathname === "/"
-                ?
-                    <>
-                        <button className="nav-tab__button_in">Регистрация</button>
-                        <button className="nav-tab__button_up">Войти</button>
-                    </>
-                :
-                    <>
-                        <div className="nav-tab__container">
-                            <button className="nav-tab__container_button">Фильмы</button>
-                            <button className="nav-tab__container_button">Сохранённые фильмы</button>
-                        </div>
-                        <button className="nav-tab__button_acc">Аккаунт</button>
-                    </>
-            }
+            <div className="nav-tab__container">
+                <img className="nav-tab__logo" src={navTabLogo} alt="Изображение логотипа в виде синего цветка" />
+                    {
+                        windowDimensions < 820
+                        ?
+                            <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`} onClick={toggleMenu} />
+                        :
+                        <>
+                            <div className="nav-tab__links">
+                                <button className="nav-tab__links_button">Фильмы</button>
+                                <button className="nav-tab__links_button">Сохранённые фильмы</button>
+                            </div>
+                            <button className="nav-tab__button_acc">Аккаунт</button>
+                        </>
+                    }
+            </div>
         </div>
     )
 }

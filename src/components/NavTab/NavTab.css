@@ -1,54 +1,34 @@
 .nav-tab {
-    width: 100%;
-    max-width: 1040px;
-    margin-right: 70px;
-    margin-left: 58px;
+    margin: auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content:space-between;
+    align-items: center;
+    background: #FAFAFA;
+    width: 100%;
+    height: 74px;
 }
 
-.nav-tab__button_up {
-    width: 76px;
-    height: 32px;
-    color: #fff;
-    background: #3456F3;
-    border-radius: 3px;
-    border: 1px solid #3456F3;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
-}
-
-.nav-tab__button_up:hover {
-    cursor: pointer;
-}
-
-.nav-tab__button_in {
-    margin-right: 30px;
-    padding: 0;
-    width: 78px;
-    background: inherit;
-    border: none;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
-}
-
-.nav-tab__button_in:hover {
-    cursor: pointer;
+.nav-tag__logo {
+    padding-left: 70px;
+    width: 38px;
+    height: 38px;
 }
 
 .nav-tab__container {
-    margin-left: 0;
-    width: 100%;
-    max-width: 1040px;
+    width: 90%;
+    max-width: 1140px;
     display: flex;
+    margin: auto;
+    justify-content:space-between;
     align-items: center;
 }
 
-.nav-tab__container_button {
+.nav-tab__links {
+    margin-left: 62px;
+    width: 84%;
+}
+
+.nav-tab__links_button {
     padding: 0;
     background: inherit;
     border: none;
@@ -58,15 +38,15 @@
     line-height: 16px;
 }
 
-.nav-tab__container_button:hover {
+.nav-tab__links_button:hover {
     cursor: pointer;
 }
 
-.nav-tab__container_button:first-of-type {
+.nav-tab__links_button:first-of-type {
     margin-right: 32px;
 }
 
-.nav-tab__container_button:first-of-type:hover {
+.nav-tab__links_button:first-of-type:hover {
     cursor: pointer;
 }
 
@@ -86,25 +66,23 @@
     cursor: pointer;
 }
 
+.nav-tab__burger-menu {
+    width: 44px;
+    height: 44px;
+    background-image: url('../../images/nav_tab_burger_icon.svg');
+}
+
 @media (max-width: 920px) {
     .nav-tab {
         margin-right: 28px;
+    }
+    .nav-tab__container {
+        width: 92%;
     }
 }
 
 @media (max-width: 600px) {
     .nav-tab {
         margin-right: 14px;
-    }
-
-    .nav-tab__button_up {
-        font-size: 10px;
-        margin-right: 8px;
-    }
-
-    .nav-tab__button_in {
-        width: 54px;
-        height: 26px;
-        font-size: 10px;
     }
 }

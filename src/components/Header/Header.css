@@ -14,14 +14,71 @@
     height: 38px;
 }
 
+.header__container {
+    margin-right: 70px;
+}
+
+.header__button_in {
+    width: 76px;
+    height: 32px;
+    color: #fff;
+    background: #3456F3;
+    border-radius: 3px;
+    border: 1px solid #3456F3;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.header__button_in:hover {
+    cursor: pointer;
+}
+
+.header__button_up {
+    margin-right: 30px;
+    padding: 0;
+    width: 78px;
+    color: #000;
+    background: inherit;
+    border: none;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.header__button_up:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 920px) {
     .header__logo {
         padding-left: 30px;
+    }
+
+    .header__container {
+        margin-right: 28px;
     }
 }
 
 @media (max-width: 600px) {
     .header__logo {
         padding-left: 14px;
+    }
+
+    .header__container {
+        margin-right: 14px;
+    }
+
+    .header__button_up {
+        font-size: 10px;
+        margin-right: 8px;
+    }
+
+    .header__button_in {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
     }
 }
