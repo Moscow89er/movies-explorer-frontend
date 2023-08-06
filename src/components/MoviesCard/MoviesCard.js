@@ -5,7 +5,7 @@ function MoviesCard () {
         <section className="movies-card">
             <div className="movies-card__container_items">
                 {movies.map((movie) => (
-                    <div className="movies-card__container_item">
+                    <div className="movies-card__container_item" key={movie.id}>
                         <img 
                             src={movie.pic}
                             className="movies-card__pic"
@@ -22,6 +22,7 @@ function MoviesCard () {
                     </div>
                 ))}
             </div>
+            <button type="submit" className="movies-card_button">Ещё</button>
         </section>
     )
 }
