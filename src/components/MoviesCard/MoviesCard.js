@@ -10,12 +10,14 @@ function MoviesCard () {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    let itemsToShow;
+    let itemsToShow = 16;
 
     if (windowDimensions < 920) {
         itemsToShow = 8;
-    } else {
-        itemsToShow = 16;
+    }
+    
+    if (windowDimensions < 620) {
+        itemsToShow = 5;
     }
 
     return (

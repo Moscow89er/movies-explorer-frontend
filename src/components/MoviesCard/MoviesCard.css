@@ -137,3 +137,30 @@
         max-height: 190px;
     }
 }
+
+@media (max-width: 620px) {
+    .movies-card__container_items {
+        justify-items: center;
+    }
+
+    .movies-card__container_item {
+        width: 300px;
+    }
+
+    .movies-card__pic {
+        max-height: 168px;
+    }
+}
+
+@media (max-width: 460px) {
+    .movies-card__container_items {
+        margin: 44px auto 30px;
+        grid-auto-rows: auto;
+        row-gap: 20px;
+    }
+
+
+    .movies-card_button {
+        margin: 50px auto 95px;
+    }
+}

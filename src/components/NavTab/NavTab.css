@@ -162,3 +162,29 @@
         margin-right: 14px;
     }
 }
+
+@media (max-width: 460px) {
+    .nav-tab__burger-menu_open {
+        width: 100%;
+    }
+
+    .nav-tab__overlay {
+        display: none;
+    }
+
+    .nav-tab__button_close {
+        margin: 14px 14px 0 auto
+    }
+
+    .nav-tab__links_button:first-of-type {
+        margin: 98px auto 0;
+    }
+
+    .nav-tab__links_button {
+        margin: 25px auto 0;
+    }
+
+    .nav-tab__button_acc {
+        margin: 444px auto auto;
+    }
+}
