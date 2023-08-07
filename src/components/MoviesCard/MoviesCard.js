@@ -1,4 +1,3 @@
-
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 
 function MoviesCard ({ moviesData, parentComponent }) {

@@ -1,5 +1,13 @@
+import { useLocation } from "react-router-dom";
+
 function Footer () {
+    const location = useLocation();
+
     return (
+        location.pathname === "/profile" || location.pathname === "/signin" || location.pathname === "/signup"
+        ?
+        null 
+        :
         <footer className="footer">
             <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
             <div className="footer__container">
