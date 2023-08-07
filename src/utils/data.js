@@ -33,3 +33,9 @@ export const movies = [
     { id: 15, title: "33 слова о дизайне", time: "1ч42м", pic: moviePic15 },
     { id: 16, title: "33 слова о дизайне", time: "1ч42м", pic: moviePic16 }
 ];
+
+export const savedMovies = [
+    { id: 1, title: "33 слова о дизайне", time: "1ч42м", pic: moviePic },
+    { id: 2, title: "33 слова о дизайне", time: "1ч42м", pic: moviePic2 },
+    { id: 3, title: "33 слова о дизайне", time: "1ч42м", pic: moviePic3 }
+];

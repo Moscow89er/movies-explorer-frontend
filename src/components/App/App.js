@@ -3,18 +3,20 @@ import Navigation from "../Navigation/Navigation";
 import Main from "../Main/Main";
 import Movies from '../Movies/Movies';
 import Footer from "../Footer/Footer";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 function App() {
   return (
     <Router>
-      <div>
+      <>
         <Navigation />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/movies" element={<Movies />} />
+          <Route path="/saved-movies" element={<SavedMovies />} />
         </Routes>
         <Footer />
-      </div>
+      </>
     </Router>
   );
 }

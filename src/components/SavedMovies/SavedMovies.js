@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesContainer/MoviesContainer";
-import { movies } from "../../utils/data";
+import { savedMovies } from "../../utils/data";
 
-function Movies () {
+function SavedMovies () {
     const [isLoading, setIsloading] = useState(false);
 
     useEffect(() => {
@@ -14,12 +14,12 @@ function Movies () {
     }, [])
 
     return (
-        <section className="movies">
+        <section className="saved-movies">
             <SearchForm />
-            <MoviesCard moviesData={movies} parentComponent="Movies" />
+            <MoviesCard moviesData={savedMovies} />
             {isLoading && <Preloader />}
         </section>
     )
 }
 
-export default Movies;
+export default SavedMovies;
