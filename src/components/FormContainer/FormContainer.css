@@ -12,7 +12,7 @@
     max-width: 396px;
     display: flex;
     flex-direction: column;
-    margin: 70px auto;
+    margin: 70px auto 60px;
 }
 
 .form-container__logo {
@@ -39,6 +39,12 @@
     color: #A0A0A0;
 }
 
+.form-container__input_wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 396px;
+}
+
 .form-container__input {
     width: 92%;
     max-width: 396px;
@@ -54,16 +60,24 @@
     padding: 15px;
 }
 
+.form-container__input_error {
+    color: #EE3465;
+}
+
 .form-container__error {
     color: #EE3465;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    max-width: 396px;
 }
 
 .form-container__button_submit {
-    margin: 160px auto 0;
+    margin: 70px auto 0;
     width: 100%;
     min-height: 45px;
     border-radius: 3px;
@@ -100,4 +114,5 @@
     font-weight: 400;
     line-height: normal;
     cursor: pointer;
+    text-decoration: none;
 }
