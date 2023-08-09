@@ -1,9 +1,9 @@
-import headerLogo from '../../images/blue_logo.svg';
+import { Link } from "react-router-dom";
 
 function Header () {
     return (
         <header className="header">
-            <img className="header__logo" src={headerLogo} alt="Изображение логотипа в виде синего цветка" />
+            <Link to="/" className="header__logo" />
             <div className="header__container">
                 <button className="header__button_up">Регистрация</button>
                 <button className="header__button_in">Войти</button>

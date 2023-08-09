@@ -8,10 +8,14 @@
     height: 74px;
 }
 
-.nav-tag__logo {
+.nav-tab__logo {
+    background-image: url(../../images/blue_logo.svg);
+    background-repeat: no-repeat;
     padding-left: 70px;
     width: 38px;
     height: 38px;
+    cursor: pointer;
+    background-position: center center;
 }
 
 .nav-tab__container {

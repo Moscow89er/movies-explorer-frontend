@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import navTabLogo from "../../images/blue_logo.svg";
+import { Link } from "react-router-dom";
 
 function NavTab () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ function NavTab () {
     return (
         <div className="nav-tab">
             <div className="nav-tab__container">
-                <img className="nav-tab__logo" src={navTabLogo} alt="Изображение логотипа в виде синего цветка" />
+                <Link to="/" className="nav-tab__logo" />
                     {
                         windowDimensions < 820
                         ?   

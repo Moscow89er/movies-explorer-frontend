@@ -9,9 +9,13 @@
 }
 
 .header__logo {
+    background-image: url(../../images/blue_logo.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
     padding-left: 70px;
     width: 38px;
     height: 38px;
+    cursor: pointer;
 }
 
 .header__container {
