@@ -59,7 +59,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                     </div>
                     {parentComponent === "Register"
                         ? <button className="form-container__button_submit">{buttonText}</button>
-                        : <button style={{margin: "158px auto 0"}} className="form-container__button_submit">{buttonText}</button>
+                        : <button className="form-container__button_submit-login">{buttonText}</button>
                     }
                 </form>
                 <div className="form-container__links">
