@@ -56,6 +56,11 @@
     cursor: pointer;
 }
 
+.footer__container_link:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+}
+
 .footer__container_link:first-of-type {
     margin-right: 20px;
 }

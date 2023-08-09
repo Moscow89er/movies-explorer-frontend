@@ -5,8 +5,8 @@ function Header () {
         <header className="header">
             <Link to="/" className="header__logo" />
             <div className="header__container">
-                <button className="header__button_up">Регистрация</button>
-                <button className="header__button_in">Войти</button>
+                <Link to="/signup" className="header__link_up">Регистрация</Link>
+                <Link to="/signin" className="header__link_in">Войти</Link>
             </div>
         </header>
     )

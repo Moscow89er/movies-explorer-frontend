@@ -11,49 +11,65 @@
 .header__logo {
     background-image: url(../../images/blue_logo.svg);
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center right;
     padding-left: 70px;
     width: 38px;
     height: 38px;
     cursor: pointer;
 }
 
+.header__logo:hover {
+    transition: 1s linear 0.03s;
+    background-image: url(../../images/blue_logo_hovered.svg);
+}
+
 .header__container {
+    display: flex;
+    flex-direction: row;
     margin-right: 70px;
 }
 
-.header__button_in {
+.header__link_in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 76px;
     height: 32px;
     color: #fff;
-    background: #3456F3;
+    background: #3558f3;
     border-radius: 3px;
-    border: 1px solid #3456F3;
+    text-decoration: none;
+    text-align: center;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
-}
-
-.header__button_in:hover {
     cursor: pointer;
 }
 
-.header__button_up {
-    margin-right: 30px;
+.header__link_in:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(53, 88, 243, 0.4);
+}
+
+.header__link_up {
+    margin: auto 30px auto auto;
     padding: 0;
     width: 78px;
     color: #000;
     background: inherit;
     border: none;
+    text-decoration: none;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+    cursor: pointer;
 }
 
-.header__button_up:hover {
-    cursor: pointer;
+.header__link_up:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 920px) {
@@ -75,12 +91,12 @@
         margin-right: 14px;
     }
 
-    .header__button_up {
+    .header__link_up {
         font-size: 10px;
-        margin-right: 8px;
+        margin: auto;
     }
 
-    .header__button_in {
+    .header__link_in {
         width: 54px;
         height: 26px;
         font-size: 10px;

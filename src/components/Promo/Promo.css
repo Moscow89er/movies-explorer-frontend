@@ -27,10 +27,14 @@
     line-height: 16px;
     border-radius: 3px;
     border: 1px solid #000;
+    cursor: pointer;
+    padding: 0;
 }
 
 .promo__container_button:hover {
-    cursor: pointer;
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 0, 0, 0.4);
 }
 
 .promo__title {

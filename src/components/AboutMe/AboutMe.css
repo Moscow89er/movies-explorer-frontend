@@ -73,6 +73,11 @@
     cursor: pointer;
 }
 
+.about-me__container-text_link:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+}
+
 .about-me__container_image {
     width: 270px;
     height: 327px;
