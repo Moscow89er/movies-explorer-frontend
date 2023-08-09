@@ -26,17 +26,20 @@
     max-width: 1140px;
     height: 36px;
     margin: 50px auto 80px;
-    background: #F4F4F4;
+    background: #f4f4f4;
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     border-radius: 6px;
     border: none;
+    cursor: pointer;
 }
 
 .movies-container__button:hover {
-    cursor: pointer;
+    transition: 1s linear 0.03s;
+    background: rgba(244, 244, 244, 0.4);
+    color: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 920px) {

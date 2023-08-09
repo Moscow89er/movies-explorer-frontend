@@ -37,10 +37,12 @@
     border-radius: 2px;
     width: 34px;
     height: 34px;
+    cursor: pointer;
 }
 
 .search__form_button:hover {
-  cursor: pointer;
+  transition: 1s linear 0.03s;
+  background-image: url(../../images/search_button_hovered.svg);
 }
 
 .search__container {

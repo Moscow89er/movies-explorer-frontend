@@ -68,9 +68,14 @@
     cursor: pointer;
 }
 
+.profile__button_edit:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+}
+
 .profile__button_exit {
     margin: 16px auto 70px;
-    color: #EE3465;
+    color: rgb(238, 52, 101);
     padding: 0;
     background: inherit;
     border: none;
@@ -79,6 +84,11 @@
     font-weight: 400;
     line-height: normal;
     cursor: pointer;
+}
+
+.profile__button_exit:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(238, 52, 101, 0.4);
 }
 
 @media (max-width: 920px) {

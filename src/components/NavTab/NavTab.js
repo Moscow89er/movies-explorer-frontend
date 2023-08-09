@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 
 function NavTab () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,11 +41,13 @@ function NavTab () {
             <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`}>
                 <button className="nav-tab__button_close" onClick={toggleMenu}></button>
                 <div className="nav-tab__links">
-                    <Link to="/" className="nav-tab__links_link">Главная</Link>
-                    <Link to="/movies" className="nav-tab__links_link">Фильмы</Link>
-                    <Link to="/saved-movies" className="nav-tab__links_link">Сохранённые фильмы</Link>
+                    <Link to="/" className={useMatch("/") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Главная</Link>
+                    <Link to="/movies" className={useMatch("/movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Фильмы</Link>
+                    <Link to="/saved-movies" className={useMatch("/saved-movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Сохранённые фильмы</Link>
                 </div>
-                <button className="nav-tab__button_acc">Аккаунт</button>
+                <Link to="/profile">
+                    <button className="nav-tab__button_acc">Аккаунт</button>
+                </Link>
             </div>
             {
                 isOverlay && <div className='nav-tab__overlay' />

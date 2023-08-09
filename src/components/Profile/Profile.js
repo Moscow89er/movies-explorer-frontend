@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useFormValidator from "../../utils/useFormValidator";
 
 function Profile () {
@@ -38,7 +39,9 @@ function Profile () {
                 </div>
             </form>
             <button type="button" className="profile__button_edit">Редактировать</button>
-            <button type="button" className="profile__button_exit">Выйти из аккаунта</button>
+            <Link to="/">
+                <button type="button" className="profile__button_exit">Выйти из аккаунта</button>
+            </Link>
         </section>
     )
 }

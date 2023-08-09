@@ -94,6 +94,11 @@
     cursor: pointer;
 }
 
+.movies-cardlist__button_delete:hover {
+    transition: 1s linear 0.03s;
+    background-image: url("../../images/movies_card_list_delete_icon_hovered.svg");
+}
+
 @media (max-width: 920px) {
     .movies-cardlist__pic {
         max-height: 190px;
