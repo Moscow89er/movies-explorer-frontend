@@ -16,8 +16,16 @@
 }
 
 .form-container__logo {
+    background-image: url(../../images/blue_logo.svg);
+    background-repeat: no-repeat;
     height: 38px;
     width: 38px;
+    cursor: pointer;
+}
+
+.form-container__logo:hover {
+    transition: 1s linear 0.03s;
+    background-image: url(../../images/blue_logo_hovered.svg);
 }
 
 .form-container__title {
@@ -91,6 +99,11 @@
     cursor: pointer;
 }
 
+.form-container__button_submit:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(53, 88, 243, 0.4);
+}
+
 .form-container__button_submit-login {
     margin: 158px auto 0;
     width: 100%;
@@ -104,6 +117,11 @@
     line-height: normal;
     color: #FFF;
     cursor: pointer;
+}
+
+.form-container__button_submit-login:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(53, 88, 243, 0.4);
 }
 
 .form-container__links {
@@ -130,6 +148,11 @@
     line-height: normal;
     cursor: pointer;
     text-decoration: none;
+}
+
+.form-container__link:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(53, 88, 243, 0.4);
 }
 
 @media (max-width: 920px) {

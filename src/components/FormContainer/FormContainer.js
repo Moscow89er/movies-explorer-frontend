@@ -1,5 +1,5 @@
 import React from "react";
-import formContainerLogo from "../../images/blue_logo.svg";
+import { Link } from "react-router-dom";
 import useFormValidator from "../../utils/useFormValidator";
 
 
@@ -15,7 +15,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
     return (
         <section className="form-container">
             <div className="form-container__elements">
-                <img className="form-container__logo" src={formContainerLogo} alt="Изображение логотипа в виде синего цветка" />
+                <Link to="/" className="form-container__logo" />
                 <h2 className="form-container__title">{titleText}</h2>
                 <form className="form-container__form">
                     {parentComponent === "Register" &&
@@ -58,15 +58,21 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                         <span className="form-container__error">{formErrors.password}</span>
                     </div>
                     {parentComponent === "Register"
-                        ? <button className="form-container__button_submit">{buttonText}</button>
-                        : <button className="form-container__button_submit-login">{buttonText}</button>
+                        ? 
+                        <Link to="/movies">
+                            <button className="form-container__button_submit">{buttonText}</button>
+                        </Link>
+                        :
+                        <Link to="/movies">
+                            <button className="form-container__button_submit-login">{buttonText}</button>
+                        </Link>
                     }
                 </form>
                 <div className="form-container__links">
                     <p className="form-container__links_paragraph">{paragraphText}</p>
                     {parentComponent === "Register"
-                        ? <a href="#" className="form-container__link">Войти</a>
-                        : <a href="#" className="form-container__link">Регистрация</a>
+                        ? <Link to="/signin" className="form-container__link">Войти</Link>
+                        : <Link to="/signup" className="form-container__link">Регистрация</Link>
                     }
                 </div>
             </div>

@@ -29,19 +29,21 @@ function NavTab () {
                         :
                         <>
                             <div className="nav-tab__links">
-                                <button className="nav-tab__links_button">Фильмы</button>
-                                <button className="nav-tab__links_button">Сохранённые фильмы</button>
+                                <Link to="/movies" className="nav-tab__links_link">Фильмы</Link>
+                                <Link to="/saved-movies" className="nav-tab__links_link">Сохранённые фильмы</Link>
                             </div>
-                            <button className="nav-tab__button_acc">Аккаунт</button>
+                            <Link to="/profile">
+                                <button className="nav-tab__button_acc">Аккаунт</button>
+                            </Link>
                         </>
                     }
             </div>
             <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`}>
                 <button className="nav-tab__button_close" onClick={toggleMenu}></button>
                 <div className="nav-tab__links">
-                    <button className="nav-tab__links_button">Главная</button>
-                    <button className="nav-tab__links_button">Фильмы</button>
-                    <button className="nav-tab__links_button">Сохранённые фильмы</button>
+                    <Link to="/" className="nav-tab__links_link">Главная</Link>
+                    <Link to="/movies" className="nav-tab__links_link">Фильмы</Link>
+                    <Link to="/saved-movies" className="nav-tab__links_link">Сохранённые фильмы</Link>
                 </div>
                 <button className="nav-tab__button_acc">Аккаунт</button>
             </div>
