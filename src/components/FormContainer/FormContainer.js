@@ -52,8 +52,8 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                             value={formValues.password}
                             onChange={handleInputChange}
                             className={`form-container__input ${formErrors.password ? "form-container__input_error" : ""}`}
-                            minLength={4}
-                            maxLength={16}
+                            minLength="4"
+                            maxLength="16"
                         />
                         <span className="form-container__error">{formErrors.password}</span>
                     </div>
