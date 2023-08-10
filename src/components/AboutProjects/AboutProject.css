@@ -181,7 +181,6 @@
     }
     
     .about-projects__container_subtitle {
-        margin: 4px auto 0;
         width: 100%;
         grid-row: 3;
         max-width: 284px;
@@ -205,7 +204,7 @@
     }
 
     .about-projects__container_paragraph:first-of-type {
-        margin: 8px auto 0;
+        margin: 4px auto 0;
         width: 100%;
         grid-row: 2;
         max-width: 284px;

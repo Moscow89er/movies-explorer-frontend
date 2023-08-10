@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Navigation from "../Navigation/Navigation"; 
+import NavTab from "../NavTab/NavTab"; 
 import Main from "../Main/Main";
 import Movies from '../Movies/Movies';
 import Footer from "../Footer/Footer";
@@ -8,11 +8,13 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
+import Header from "../Header/Header";
 
 function App() {
   const location = useLocation();
+  const isLoggedIn = false;
 
-  const shouldRenderNavAndFooter = (pathname) => {
+  const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
 
@@ -26,11 +28,12 @@ function App() {
     return false;
   }
 
-  const renderNavAndFooter = shouldRenderNavAndFooter(location.pathname);
+  const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   return (
     <div>
-      {renderNavAndFooter && <Navigation />}
+      {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={isLoggedIn} />
+      : renderHeaderAndFooter && <NavTab />}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
@@ -40,7 +43,7 @@ function App() {
         <Route path="/signin" element={<Login />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
-      {renderNavAndFooter && <Footer />}
+      {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
     </div>
   );
 }
