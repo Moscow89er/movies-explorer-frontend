@@ -12,6 +12,11 @@ function NavTab () {
         setIsOverlay(newState);
     };
 
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+        setIsOverlay(false);
+    }
+
     useEffect(() => {
         const handleResize = () => setWindowDimensions(window.innerWidth);
         window.addEventListener('resize', handleResize);
@@ -41,12 +46,30 @@ function NavTab () {
             <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`}>
                 <button className="nav-tab__button_close" onClick={toggleMenu}></button>
                 <div className="nav-tab__links">
-                    <Link to="/" className={useMatch("/") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Главная</Link>
-                    <Link to="/movies" className={useMatch("/movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Фильмы</Link>
-                    <Link to="/saved-movies" className={useMatch("/saved-movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}>Сохранённые фильмы</Link>
+                    <Link 
+                        to="/"
+                        className={useMatch("/") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        onClick={closeMenu}
+                    >
+                        Главная
+                    </Link>
+                    <Link
+                        to="/movies"
+                        className={useMatch("/movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        onClick={closeMenu}
+                    >
+                        Фильмы
+                    </Link>
+                    <Link
+                        to="/saved-movies"
+                        className={useMatch("/saved-movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        onClick={closeMenu}
+                    >
+                        Сохранённые фильмы
+                    </Link>
                 </div>
                 <Link to="/profile">
-                    <button className="nav-tab__button_acc">Аккаунт</button>
+                    <button className="nav-tab__button_acc" onClick={closeMenu}>Аккаунт</button>
                 </Link>
             </div>
             {

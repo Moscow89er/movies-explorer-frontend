@@ -13,7 +13,7 @@ function AboutMe () {
                         С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке,
                         начал заниматься фриланс-заказами и ушёл с постоянной работы.
                     </p>
-                    <a className="about-me__container-text_link" href="https://github.com/Moscow89er/">Github</a>
+                    <a className="about-me__container-text_link" href="https://github.com/Moscow89er/" target="_blank" rel="noopener noreferrer">Github</a>
                 </div>
                 <img className="about-me__container_image" src={aboutMePhoto} alt="фотография студента" />
             </div>

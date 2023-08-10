@@ -6,8 +6,8 @@ function Footer () {
             <div className="footer__container">
                 <p className="footer__container_year">© 2023</p>
                 <div className="footer__container_links">
-                    <a className="footer__container_link" href="https://practicum.yandex.ru/">Яндекс.Практикум</a>
-                    <a className="footer__container_link" href="https://github.com/Moscow89er/">Github</a>
+                    <a className="footer__container_link" href="https://practicum.yandex.ru/" target="_blank" rel="noopener noreferrer">Яндекс.Практикум</a>
+                    <a className="footer__container_link" href="https://github.com/Moscow89er/" target="_blank" rel="noopener noreferrer">Github</a>
                 </div>
             </div>
         </footer>

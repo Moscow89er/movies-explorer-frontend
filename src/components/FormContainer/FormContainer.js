@@ -28,6 +28,9 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                                 value={formValues.name}
                                 onChange={handleInputChange}
                                 className={`form-container__input ${formErrors.name ? "form-container__input_error" : ""}`}
+                                minlength="2"
+                                maxLength="30"
+                                required
                             />
                             <span className="form-container__error">{formErrors.name}</span>
                         </div>
@@ -41,6 +44,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                             value={formValues.email}
                             onChange={handleInputChange}
                             className={`form-container__input ${formErrors.email ? "form-container__input_error" : ""}`}
+                            required
                         />
                         <span className="form-container__error">{formErrors.email}</span>
                     </div>
@@ -52,8 +56,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                             value={formValues.password}
                             onChange={handleInputChange}
                             className={`form-container__input ${formErrors.password ? "form-container__input_error" : ""}`}
-                            minLength="4"
-                            maxLength="16"
+                            required
                         />
                         <span className="form-container__error">{formErrors.password}</span>
                     </div>
