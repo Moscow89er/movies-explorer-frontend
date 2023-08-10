@@ -6,10 +6,6 @@ function Navigation () {
     const location = useLocation();
 
     return (
-      location.pathname === "/signin" || location.pathname === "/signup" 
-      ?
-      null
-      :
         location.pathname === "/"
           ?
             <Header />
