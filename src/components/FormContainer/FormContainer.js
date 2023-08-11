@@ -28,7 +28,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                                 value={formValues.name}
                                 onChange={handleInputChange}
                                 className={`form-container__input ${formErrors.name ? "form-container__input_error" : ""}`}
-                                minlength="2"
+                                minLength="2"
                                 maxLength="30"
                                 required
                             />

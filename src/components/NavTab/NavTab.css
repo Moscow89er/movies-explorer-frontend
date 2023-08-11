@@ -11,8 +11,8 @@
 .nav-tab__logo {
     background-image: url(../../images/blue_logo.svg);
     background-repeat: no-repeat;
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 40px;
     cursor: pointer;
     background-position: center center;
 }
