@@ -112,7 +112,6 @@
         top: 0;
         right: 0;
         width: 0;
-        height: 100vh;
         background-color: #FAFAFA;
         display: flex;
         align-items: center;
@@ -158,7 +157,7 @@
     }
 
     .nav-tab__link:first-of-type {
-        margin: 106px auto 0;
+        margin: 105px auto 0;
     }
 
     .nav-tab__link:last-of-type {

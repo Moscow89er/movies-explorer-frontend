@@ -1,8 +1,11 @@
+import { useLocation } from "react-router-dom";
+
 function Footer () {
+    const location = useLocation();
 
     return (
         <footer className="footer">
-            <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+            <h2 className="footer__title" style={location.pathname === "/saved-movies" ? { margin: '80px auto 0 auto' } : {}}>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
             <div className="footer__container">
                 <p className="footer__container_year">© 2023</p>
                 <div className="footer__container_links">

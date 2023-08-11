@@ -66,6 +66,10 @@
 }
 
 @media (max-width: 920px) {
+    .footer {
+        background: #FAFAFA;
+    }
+
     .footer__container {
         width: 100%;
         max-width: 708px;

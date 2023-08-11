@@ -39,10 +39,18 @@ function NavTab () {
                         <>
                             <div
                                 className="nav-tab__links"
-                                style={location.pathname === "/profile" ? { marginLeft: '42px' } : {}}
+                                style={
+                                    location.pathname === "/profile" ||
+                                    location.pathname === "/saved-movies"
+                                    ? { marginLeft: '42px' } : {}
+                                }
                             >
                                 <Link
-                                    style={location.pathname === "/profile" ? { marginRight: '18px' } : {}}
+                                    style={
+                                        location.pathname === "/profile" ||
+                                        location.pathname === "/saved-movies"
+                                        ? { marginRight: '18px' } : {}
+                                    }
                                     to="/movies"
                                     className="nav-tab__link"
                                 >
@@ -80,7 +88,7 @@ function NavTab () {
                     </Link>
                     <Link
                         to="/saved-movies"
-                        className={useMatch("/saved-movies") ? "nav-tab__link-active" : "nav-tab__link"}
+                        className={useMatch("/saved-movies") ? "nav-tab__link_active" : "nav-tab__link"}
                         onClick={closeMenu}
                     >
                         Сохранённые фильмы
