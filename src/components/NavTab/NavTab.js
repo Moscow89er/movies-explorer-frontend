@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useMatch } from "react-router-dom";
+import { Link, useMatch, useLocation } from "react-router-dom";
 
 function NavTab () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isOverlay, setIsOverlay] = useState(false);
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
+
+    const location = useLocation();
+
+    console.log(location.pathname);
 
     const toggleMenu = () => {
         const newState = !isMenuOpen;
@@ -33,9 +37,23 @@ function NavTab () {
                             <div className={`nav-tab__button ${isMenuOpen ? "nav-tab__button_clicked" : ""}`} onClick={toggleMenu} />
                         :
                         <>
-                            <div className="nav-tab__links">
-                                <Link to="/movies" className="nav-tab__links_link">Фильмы</Link>
-                                <Link to="/saved-movies" className="nav-tab__links_link">Сохранённые фильмы</Link>
+                            <div
+                                className="nav-tab__links"
+                                style={location.pathname === "/profile" ? { marginLeft: '42px' } : {}}
+                            >
+                                <Link
+                                    style={location.pathname === "/profile" ? { marginRight: '18px' } : {}}
+                                    to="/movies"
+                                    className="nav-tab__link"
+                                >
+                                    Фильмы
+                                </Link>
+                                <Link
+                                    to="/saved-movies"
+                                    className="nav-tab__link"
+                                >
+                                    Сохранённые фильмы
+                                </Link>
                             </div>
                             <Link to="/profile">
                                 <button className="nav-tab__button_acc">Аккаунт</button>
@@ -48,21 +66,21 @@ function NavTab () {
                 <div className="nav-tab__links">
                     <Link 
                         to="/"
-                        className={useMatch("/") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        className={useMatch("/") ? "nav-tab__link_active" : "nav-tab__link"}
                         onClick={closeMenu}
                     >
                         Главная
                     </Link>
                     <Link
                         to="/movies"
-                        className={useMatch("/movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        className={useMatch("/movies") ? "nav-tab__link_active" : "nav-tab__link"}
                         onClick={closeMenu}
                     >
                         Фильмы
                     </Link>
                     <Link
                         to="/saved-movies"
-                        className={useMatch("/saved-movies") ? "nav-tab__links_link-active" : "nav-tab__links_link"}
+                        className={useMatch("/saved-movies") ? "nav-tab__link-active" : "nav-tab__link"}
                         onClick={closeMenu}
                     >
                         Сохранённые фильмы
