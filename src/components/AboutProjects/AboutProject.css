@@ -229,9 +229,23 @@
 
 @media (max-width: 600px) {
     .about-projects__title {
+        margin-top: 2px;
         max-width: 284px;
         font-size: 17px;
         padding-top: 70px;
         padding-bottom: 28px;
     }
+    .projects__subtitle {
+        margin-top: 2px;
+    }
+    
+    .projects__subtitle:first-of-type {
+        margin-top: 2px;
+    }
+
+    .about-projects__info:first-of-type {
+        margin-top: 8px;
+    }
+
+
 }

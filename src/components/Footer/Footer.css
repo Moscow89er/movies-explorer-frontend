@@ -90,7 +90,7 @@
 
     .footer__container {
         margin: 0;
-        padding-top: 34px;
+        padding-top: 30px;
         height: auto;
         flex-direction: column-reverse;
     }

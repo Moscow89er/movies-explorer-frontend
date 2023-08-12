@@ -33,9 +33,7 @@ function MoviesContainer ({ moviesData, parentComponent }) {
 
     return (
         <section className="movies-container">
-            <div className="movies-container__items">
                 <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} />
-            </div>
                 <button 
                     style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}
                     type="button"
