@@ -11,7 +11,7 @@
     width: 90%;
     max-width: 1140px;
     margin: 0;
-    padding-top: 110px;
+    padding-top: 112px;
     padding-bottom: 22px;
     font-size: 22px;
     font-style: normal;
@@ -123,7 +123,7 @@
 @media (max-width: 920px) {
     .about-projects__title {
         max-width: 668px;
-        padding-top: 90px;
+        padding-top: 92px;
         padding-bottom: 25px;
         font-size: 21px;
     }
@@ -178,7 +178,7 @@
     }
 
     .about-projects__subtitle:first-of-type {
-        margin: 0;
+        margin-top: 2px;
         width: 100%;
         grid-row: 1;
         font-size: 17px;
@@ -238,14 +238,16 @@
     .projects__subtitle {
         margin-top: 2px;
     }
+
+    .about-projects__container {
+        margin-top: 21px;
+    }
+
+    .about-projects__info {
+        margin-top: 6px;
+    }
     
     .projects__subtitle:first-of-type {
         margin-top: 2px;
     }
-
-    .about-projects__info:first-of-type {
-        margin-top: 8px;
-    }
-
-
 }

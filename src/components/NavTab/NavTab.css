@@ -240,15 +240,11 @@
         margin: 25px auto 0;
     }
 
-    .nav-tab__link:last-of-type {
-        margin: 16px auto 0;
-    }
-
     .nav-tab__link_active {
         padding-bottom: 6px;
     }
 
     .nav-tab__button-acc {
-        margin: 444px auto auto;
+        margin: 436px auto 46px;
     }
 }

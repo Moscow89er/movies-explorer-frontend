@@ -100,7 +100,7 @@
     }
 
     .footer__link {
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     .footer__link:first-of-type {
@@ -109,7 +109,8 @@
     }
 
     .footer__year {
-        margin-top: 30px;
+        margin-top: 32px;
+        margin-bottom: 20px;
         font-size: 12px;
     }
 }
