@@ -18,9 +18,9 @@ function Profile () {
         <section className="profile">
             <h2 className="profile__title">Привет, {formValues.name}!</h2> 
             <form className="profile__form">
-                <div className="profile__form_container">
-                    <p className="profile__paragraph">Имя</p>
-                    <div className="profile__input_wrapper">
+                <div className="profile__container">
+                    <p className="profile__subtitle">Имя</p>
+                    <div className="profile__input-wrapper">
                         <input
                             type="text"
                             name="name"
@@ -31,12 +31,12 @@ function Profile () {
                             maxLength="30"
                             required
                         />
-                        <span className="profile__error_name">{formErrors.name}</span>
+                        <span className="profile__error-name">{formErrors.name}</span>
                     </div>
                 </div>
-                <div className="profile__form_container">
-                    <p className="profile__paragraph">E-mail</p>
-                    <div className="profile__input_wrapper">
+                <div className="profile__container">
+                    <p className="profile__subtitle">E-mail</p>
+                    <div className="profile__input-wrapper">
                         <input
                             type="email"
                             name="email"
@@ -45,14 +45,12 @@ function Profile () {
                             className={`profile__input ${formErrors.email ? "profile__input_error" : ""}`}
                             required
                         />
-                        <span className="profile__error_email">{formErrors.email}</span>
+                        <span className="profile__error-email">{formErrors.email}</span>
                     </div>
                 </div>
             </form>
-            <button type="button" className="profile__button_edit">Редактировать</button>
-            <Link to="/">
-                <button type="button" className="profile__button_exit">Выйти из аккаунта</button>
-            </Link>
+            <button type="button" className="profile__button-edit">Редактировать</button>
+            <Link to="/" className="profile__button-exit">Выйти из аккаунта</Link>
         </section>
     )
 }

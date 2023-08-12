@@ -14,7 +14,7 @@
     flex-direction: row;
 }
 
-.promo__container_elements {
+.promo__elements {
     margin-top: 75px;
     flex-direction: column;
     max-width: 640px;
@@ -24,7 +24,7 @@
     margin: 75px 0 auto auto;
 }
 
-.promo__container_button {
+.promo__button {
     margin: 146px 0 75px auto;
     width: 130px;
     height: 36px;
@@ -39,7 +39,7 @@
     padding: 0;
 }
 
-.promo__container_button:hover {
+.promo__button:hover {
     transition: 1s linear 0.03s;
     color: rgba(0, 0, 0, 0.4);
     border-color: rgba(0, 0, 0, 0.4);
@@ -70,7 +70,7 @@
         padding-bottom: 76px;
     }
 
-    .promo__container_elements {
+    .promo__elements {
         margin: 48px auto auto;
         padding: 0;
     }
@@ -79,7 +79,7 @@
         margin: 140px auto auto;
     }
 
-    .promo__container_button {
+    .promo__button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -115,7 +115,7 @@
         height: 206px;
     }
 
-    .promo__container_elements {
+    .promo__elements {
         margin-top: 44px;
     }
 
@@ -124,7 +124,7 @@
         line-height: 38px;
     }
 
-    .promo__container_button {
+    .promo__button {
         margin-top: 83px;
     }
 }
