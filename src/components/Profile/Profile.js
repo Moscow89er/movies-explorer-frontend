@@ -15,7 +15,7 @@ function Profile () {
     } = useFormValidator(initialState);
 
     return (
-        <section className="profile">
+        <main className="profile">
             <h2 className="profile__title">Привет, {formValues.name}!</h2> 
             <form className="profile__form">
                 <div className="profile__container">
@@ -51,7 +51,7 @@ function Profile () {
             </form>
             <button type="button" className="profile__button-edit">Редактировать</button>
             <Link to="/" className="profile__button-exit">Выйти из аккаунта</Link>
-        </section>
+        </main>
     )
 }
 

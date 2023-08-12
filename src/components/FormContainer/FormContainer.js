@@ -13,7 +13,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
     const { formValues, formErrors, handleInputChange } = useFormValidator(initialState);
 
     return (
-        <section className="form-container">
+        <main className="form-container">
             <div className="form-container__elements">
                 <Link to="/" className="form-container__logo" />
                 <h2 className="form-container__title">{titleText}</h2>
@@ -75,7 +75,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                     }
                 </div>
             </div>
-        </section>
+        </main>
     )
 }
 

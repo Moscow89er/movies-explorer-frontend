@@ -14,11 +14,11 @@ function SavedMovies () {
     }, [])
 
     return (
-        <div className="saved-movies">
+        <main className="saved-movies">
             <SearchForm />
             <MoviesCard moviesData={savedMovies} />
             {isLoading && <Preloader />}
-        </div>
+        </main>
     )
 }
 

@@ -14,11 +14,11 @@ function Movies () {
     }, [])
 
     return (
-        <div className="movies">
+        <main className="movies">
             <SearchForm />
             <MoviesCard moviesData={movies} parentComponent="Movies" />
             {isLoading && <Preloader />}
-        </div>
+        </main>
     )
 }
 

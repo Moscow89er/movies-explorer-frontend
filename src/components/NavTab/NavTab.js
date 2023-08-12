@@ -28,7 +28,7 @@ function NavTab () {
     }, []);
 
     return (
-        <div className="nav-tab">
+        <header className="nav-tab">
             <div className="nav-tab__container">
                 <Link to="/" className="nav-tab__logo" />
                     {
@@ -97,7 +97,7 @@ function NavTab () {
             {
                 isOverlay && <div className='nav-tab__overlay' />
             }
-        </div>
+        </header>
     )
 }
 
