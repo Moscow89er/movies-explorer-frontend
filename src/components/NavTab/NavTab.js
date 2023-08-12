@@ -63,40 +63,36 @@ function NavTab () {
                                     Сохранённые фильмы
                                 </Link>
                             </div>
-                            <Link to="/profile">
-                                <button className="nav-tab__button_acc">Аккаунт</button>
-                            </Link>
+                            <Link to="/profile" className="nav-tab__button-acc">Аккаунт</Link>
                         </>
                     }
             </div>
             <div className={`nav-tab__burger-menu ${isMenuOpen ? "nav-tab__burger-menu_open" : ""}`}>
-                <button className="nav-tab__button_close" onClick={toggleMenu}></button>
+                <button className="nav-tab__button-close" onClick={toggleMenu}></button>
                 <div className="nav-tab__links">
                     <Link 
                         to="/"
-                        className={useMatch("/") ? "nav-tab__link_active" : "nav-tab__link"}
+                        className={`nav-tab__link ${useMatch("/") ? "nav-tab__link_active" : ""}`}
                         onClick={closeMenu}
                     >
                         Главная
                     </Link>
                     <Link
                         to="/movies"
-                        className={useMatch("/movies") ? "nav-tab__link_active" : "nav-tab__link"}
+                        className={`nav-tab__link ${useMatch("/movies") ? "nav-tab__link_active" : ""}`}
                         onClick={closeMenu}
                     >
                         Фильмы
                     </Link>
                     <Link
                         to="/saved-movies"
-                        className={useMatch("/saved-movies") ? "nav-tab__link_active" : "nav-tab__link"}
+                        className={`nav-tab__link ${useMatch("/saved-movies") ? "nav-tab__link_active" : ""}`}
                         onClick={closeMenu}
                     >
                         Сохранённые фильмы
                     </Link>
                 </div>
-                <Link to="/profile">
-                    <button className="nav-tab__button_acc" onClick={closeMenu}>Аккаунт</button>
-                </Link>
+                <Link to="/profile"className="nav-tab__button-acc" onClick={closeMenu}>Аккаунт</Link>
             </div>
             {
                 isOverlay && <div className='nav-tab__overlay' />
