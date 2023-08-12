@@ -25,6 +25,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                             <input
                                 type="text"
                                 name="name"
+                                placeholder="Введите имя"
                                 value={formValues.name}
                                 onChange={handleInputChange}
                                 className={`form-container__input ${formErrors.name ? "form-container__input_error" : ""}`}
@@ -41,6 +42,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                         <input
                             type="email"
                             name="email"
+                            placeholder="Введите адрес почты"
                             value={formValues.email}
                             onChange={handleInputChange}
                             className={`form-container__input ${formErrors.email ? "form-container__input_error" : ""}`}
@@ -53,6 +55,7 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                         <input
                             type="password"
                             name="password"
+                            placeholder="Введите пароль"
                             value={formValues.password}
                             onChange={handleInputChange}
                             className={`form-container__input ${formErrors.password ? "form-container__input_error" : ""}`}

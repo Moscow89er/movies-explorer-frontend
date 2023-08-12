@@ -8,7 +8,7 @@ function MoviesCardList ({ movies, parentComponent }) {
                     <img 
                         src={movie.pic}
                         className="movies-card__pic"
-                        alt="Изображение фильма"
+                        alt={movie.title}
                     />
                     <div className="movies-card__container">
                         <h3 className="movies-card__title">{movie.title}</h3>

@@ -1,7 +1,7 @@
 .movies-cardlist {
     width: 90%;
     max-width: 1140px;
-    margin: 68px auto 30px;
+    margin: 70px auto 30px;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -116,7 +116,7 @@
 
 @media (max-width: 920px) {
     .movies-cardlist {
-        margin: 84px auto 30px;
+        margin: 86px auto 30px;
         width: 92%;
         max-width: 768px;
         grid-auto-rows: 257px;
@@ -147,6 +147,6 @@
     .movies-cardlist {
         margin: 44px auto 30px;
         grid-auto-rows: auto;
-        row-gap: 20px;
+        row-gap: 21px;
     }
 }

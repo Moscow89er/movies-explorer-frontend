@@ -223,6 +223,11 @@
         display: none;
     }
 
+    .nav-tab__button {
+        width: 34px;
+        margin-left: 10px;
+    }
+
     .nav-tab__button-close {
         margin: 14px 14px 0 auto
     }

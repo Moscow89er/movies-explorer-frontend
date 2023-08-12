@@ -24,6 +24,7 @@ function Profile () {
                         <input
                             type="text"
                             name="name"
+                            placeholder="Введите имя"
                             value={formValues.name || ""}
                             onChange={handleInputChange}
                             className={`profile__input ${formErrors.name ? "profile__input_error" : ""}`}
@@ -40,6 +41,7 @@ function Profile () {
                         <input
                             type="email"
                             name="email"
+                            placeholder="Введите адрес почты"
                             value={formValues.email || ""}
                             onChange={handleInputChange}
                             className={`profile__input ${formErrors.email ? "profile__input_error" : ""}`}
