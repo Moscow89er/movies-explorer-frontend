@@ -37,7 +37,7 @@
     line-height: normal;
 }
 
-.form-container__paragraph {
+.form-container__subtitle {
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 10px;
@@ -47,7 +47,7 @@
     color: #A0A0A0;
 }
 
-.form-container__input_wrapper {
+.form-container__input-wrapper {
     position: relative;
     width: 100%;
     max-width: 396px;
@@ -84,12 +84,16 @@
     max-width: 396px;
 }
 
-.form-container__button_submit {
-    margin: 70px auto 0;
-    width: 100%;
-    min-height: 45px;
+.form-container__button-submit {
+    margin: 73px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 396px;
+    height: 45px;
     border-radius: 3px;
     border: none;
+    text-decoration: none;
     background: #3456F3;
     font-size: 14px;
     font-style: normal;
@@ -99,17 +103,21 @@
     cursor: pointer;
 }
 
-.form-container__button_submit:hover {
+.form-container__button-submit:hover {
     transition: 1s linear 0.03s;
     background: rgba(53, 88, 243, 0.4);
 }
 
-.form-container__button_submit-login {
-    margin: 158px auto 0;
-    width: 100%;
-    min-height: 45px;
+.form-container__button-login {
+    margin: 161px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 396px;
+    height: 45px;
     border-radius: 3px;
     border: none;
+    text-decoration: none;
     background: #3456F3;
     font-size: 14px;
     font-style: normal;
@@ -119,7 +127,7 @@
     cursor: pointer;
 }
 
-.form-container__button_submit-login:hover {
+.form-container__button-login:hover {
     transition: 1s linear 0.03s;
     background: rgba(53, 88, 243, 0.4);
 }
@@ -131,7 +139,7 @@
     justify-content: center;
 }
 
-.form-container__links_paragraph {
+.form-container__text {
     margin-right: 6px;
     font-size: 14px;
     font-style: normal;
@@ -179,13 +187,13 @@
         width: 88%;
     }
 
-    .form-container__button_submit {
-        margin: 158px auto 0;
+    .form-container__button-submit {
+        margin: 160px auto 0;
         font-size: 12px;
     }
 
-    .form-container__button_submit-login {
-        margin: 246px auto 0px;
+    .form-container__button-login {
+        margin: 248px auto 0px;
         font-size: 12px;
     }
 
@@ -193,7 +201,7 @@
         margin-top: 4px;
     }
 
-    .form-container__links_paragraph {
+    .form-container__text {
         font-size: 12px;
     }
     

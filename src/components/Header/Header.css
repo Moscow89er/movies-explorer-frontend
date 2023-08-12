@@ -28,12 +28,12 @@
     align-items: center;
 }
 
-.header__container_links {
+.header__links {
     display: flex;
     flex-direction: row;
 }
 
-.header__link_in {
+.header__link-in {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,12 +51,12 @@
     cursor: pointer;
 }
 
-.header__link_in:hover {
+.header__link-in:hover {
     transition: 1s linear 0.03s;
     background: rgba(53, 88, 243, 0.4);
 }
 
-.header__link_up {
+.header__link-up {
     margin: auto 30px auto auto;
     padding: 0;
     width: 78px;
@@ -71,7 +71,7 @@
     cursor: pointer;
 }
 
-.header__link_up:hover {
+.header__link-up:hover {
     transition: 1s linear 0.03s;
     color: rgba(0, 0, 0, 0.4);
 }
@@ -91,16 +91,16 @@
         padding-left: 14px;
     }
 
-    .header__container_links {
+    .header__links {
         margin-right: 14px;
     }
 
-    .header__link_up {
+    .header__link-up {
         font-size: 10px;
         margin: auto;
     }
 
-    .header__link_in {
+    .header__link-in {
         width: 54px;
         height: 26px;
         font-size: 10px;

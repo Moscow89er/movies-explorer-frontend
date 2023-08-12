@@ -31,20 +31,20 @@
     align-items: center;
 }
 
-.footer__container_year {
+.footer__year {
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.footer__container_links {
+.footer__links {
     display: flex;
     align-items: center;
     margin: 0;
 }
 
-.footer__container_link {
+.footer__link {
     display: block;
     margin: 0;
     font-size: 13px;
@@ -56,12 +56,12 @@
     cursor: pointer;
 }
 
-.footer__container_link:hover {
+.footer__link:hover {
     transition: 1s linear 0.03s;
     color: rgba(0, 0, 0, 0.4);
 }
 
-.footer__container_link:first-of-type {
+.footer__link:first-of-type {
     margin-right: 20px;
 }
 
@@ -95,20 +95,20 @@
         flex-direction: column-reverse;
     }
 
-    .footer__container_links {
+    .footer__links {
         flex-direction: column;
     }
 
-    .footer__container_link {
+    .footer__link {
         margin-top: 10px;
     }
 
-    .footer__container_link:first-of-type {
+    .footer__link:first-of-type {
         font-size: 12px;
         margin: auto;
     }
 
-    .footer__container_year {
+    .footer__year {
         margin-top: 30px;
         font-size: 12px;
     }

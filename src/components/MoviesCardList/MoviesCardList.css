@@ -1,11 +1,11 @@
-.movies-cardlist__item {
+.movies-card {
     width: 100%;
     max-width: 559px;
     background: #FFF;
     border-radius: 5%;
 }
 
-.movies-cardlist__container_radio {
+.movies-card__container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,7 +14,7 @@
     background: #FFF;
 }
 
-.movies-cardlist__pic {
+.movies-card__pic {
     width: 100%;
     max-height: 150px;
     object-fit: cover;
@@ -22,7 +22,7 @@
     border-top-left-radius: 5%;
 }
 
-.movies-cardlist__title {
+.movies-card__title {
     margin: 0;
     font-size: 13px;
     font-style: normal;
@@ -30,21 +30,22 @@
     line-height: normal;
 }
 
-.movies-cardlist__radio_input {
+.movies-card__input {
 	position: absolute;
 	z-index: -1;
 	opacity: 0;
 	margin: auto;
 }
 
-.movies-cardlist__radio_circle {
+.movies-card__circle {
+    display: block;
 	position: relative;
 	cursor: pointer;
     width: 16px;
     height: 16px;
 }
 
-.movies-cardlist__radio_circle:before {
+.movies-card__circle:before {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -55,7 +56,7 @@
 	border-radius: 50%;
 }
 
-.movies-cardlist__radio_circle:after {
+.movies-card__circle:after {
 	content: '';
 	position: absolute;
     top: 3px;
@@ -69,11 +70,11 @@
 	transition: .2s;
 }
 
-.movies-cardlist__radio_input:checked + .movies-cardlist__radio_circle:after {
+.movies-card__input:checked + .movies-card__circle:after {
 	opacity: 1;
 }
 
-.movies-cardlist__time {
+.movies-card__duration {
     margin: 0 12px 14px;
     color: #A0A0A0;
     font-size: 11px;
@@ -82,7 +83,7 @@
     line-height: normal;
 }
 
-.movies-cardlist__button_delete {
+.movies-card__button-delete {
     width: 16px;
     height: 16px;
     background-image: url("../../images/movies_card_list_delete_icon.svg");
@@ -94,23 +95,23 @@
     cursor: pointer;
 }
 
-.movies-cardlist__button_delete:hover {
+.movies-card__button-delete:hover {
     transition: 1s linear 0.03s;
     background-image: url("../../images/movies_card_list_delete_icon_hovered.svg");
 }
 
 @media (max-width: 920px) {
-    .movies-cardlist__pic {
+    .movies-card__pic {
         max-height: 190px;
     }
 }
 
 @media (max-width: 620px) {
-    .movies-cardlist__item {
+    .movies-card {
         width: 300px;
     }
 
-    .movies-cardlist__pic {
+    .movies-card__pic {
         max-height: 168px;
     }
 }

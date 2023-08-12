@@ -3,24 +3,24 @@ import React from "react";
 function MoviesCardList ({ movies, parentComponent }) {
     return (
         movies.map((movie) => (
-            <div className="movies-cardlist__item" key={movie.id}>
+            <div className="movies-card" key={movie.id}>
                 <img 
                     src={movie.pic}
-                    className="movies-cardlist__pic"
+                    className="movies-card__pic"
                     alt="Изображение фильма"
                 />
-                <div className="movies-cardlist__container_radio">
-                    <h3 className="movies-cardlist__title">{movie.title}</h3>
+                <div className="movies-card__container">
+                    <h3 className="movies-card__title">{movie.title}</h3>
                         {parentComponent === "Movies" ? (
-                                <label className="movies-cardlist__radio">
-                                    <input type="radio" className="movies-cardlist__radio_input"/>
-                                    <div className="movies-cardlist__radio_circle" />
+                                <label className="movies-card__radio">
+                                    <input type="radio" className="movies-card__input"/>
+                                    <span className="movies-card__circle" />
                                 </label>
                         ) : (
-                            <button className="movies-cardlist__button_delete"></button>
+                            <button className="movies-card__button-delete"></button>
                         )}
                 </div>
-                <p className="movies-cardlist__time">{movie.time}</p>
+                <p className="movies-card__duration">{movie.time}</p>
             </div>
         ))
     )

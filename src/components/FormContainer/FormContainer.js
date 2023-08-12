@@ -20,8 +20,8 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                 <form className="form-container__form">
                     {parentComponent === "Register" &&
                     <>
-                        <p className="form-container__paragraph">Имя</p>
-                        <div className="form-container__input_wrapper">
+                        <p className="form-container__subtitle">Имя</p>
+                        <div className="form-container__input-wrapper">
                             <input
                                 type="text"
                                 name="name"
@@ -36,8 +36,8 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                         </div>
                     </>
                     }
-                    <p className="form-container__paragraph">E-mail</p>
-                    <div className="form-container__input_wrapper">
+                    <p className="form-container__subtitle">E-mail</p>
+                    <div className="form-container__input-wrapper">
                         <input
                             type="email"
                             name="email"
@@ -48,8 +48,8 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                         />
                         <span className="form-container__error">{formErrors.email}</span>
                     </div>
-                    <p className="form-container__paragraph">Пароль</p>
-                    <div className="form-container__input_wrapper">
+                    <p className="form-container__subtitle">Пароль</p>
+                    <div className="form-container__input-wrapper">
                         <input
                             type="password"
                             name="password"
@@ -62,17 +62,13 @@ function FormContainer ({ titleText, buttonText, paragraphText, parentComponent 
                     </div>
                     {parentComponent === "Register"
                         ? 
-                        <Link to="/movies">
-                            <button className="form-container__button_submit">{buttonText}</button>
-                        </Link>
+                        <Link to="/movies" className="form-container__button-submit">{buttonText}</Link>
                         :
-                        <Link to="/movies">
-                            <button className="form-container__button_submit-login">{buttonText}</button>
-                        </Link>
+                        <Link to="/movies" className="form-container__button-login">{buttonText}</Link>
                     }
                 </form>
                 <div className="form-container__links">
-                    <p className="form-container__links_paragraph">{paragraphText}</p>
+                    <p className="form-container__text">{paragraphText}</p>
                     {parentComponent === "Register"
                         ? <Link to="/signin" className="form-container__link">Войти</Link>
                         : <Link to="/signup" className="form-container__link">Регистрация</Link>
