@@ -8,8 +8,6 @@ function NavTab () {
 
     const location = useLocation();
 
-    console.log(location.pathname);
-
     const toggleMenu = () => {
         const newState = !isMenuOpen;
         setIsMenuOpen(newState);
