@@ -35,14 +35,14 @@ class MainApi {
         .then(this._checkResponse)
     }
 
-    register(data) {
+    register({ name, email, password }) {
         return fetch(`${this._url}/signup`, {
             method: 'POST',
             headers: this.headers,
             body: JSON.stringify({
-                name: data.name,
-                email: data.email,
-                password: data.password
+                name: name,
+                email: email,
+                password: password
             })
         })
         .then(this._checkResponse)

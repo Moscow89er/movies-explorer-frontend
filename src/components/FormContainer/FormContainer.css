@@ -89,6 +89,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     max-width: 396px;
     height: 45px;
     border-radius: 3px;
@@ -108,11 +109,37 @@
     background: rgba(53, 88, 243, 0.4);
 }
 
-.form-container__button-login {
+.form-container__button-submit_disabled {
+    margin: 73px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 396px;
+    height: 45px;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    background: #a0a0a0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.form-container__button-submit_disabled:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(160, 160, 160, 0.4);
+}
+
+.form-container__button-login_disabled {
     margin: 161px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     max-width: 396px;
     height: 45px;
     border-radius: 3px;
@@ -127,9 +154,34 @@
     cursor: pointer;
 }
 
-.form-container__button-login:hover {
+.form-container__button-login_disabled:hover {
     transition: 1s linear 0.03s;
     background: rgba(53, 88, 243, 0.4);
+}
+
+form-container__button-login_disabled {
+    margin: 73px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 396px;
+    height: 45px;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    background: #a0a0a0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.form-container__button-login:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(160, 160, 160, 0.4);
 }
 
 .form-container__links {
@@ -193,6 +245,16 @@
     }
 
     .form-container__button-login {
+        margin: 248px auto 0px;
+        font-size: 12px;
+    }
+
+    .form-container__button-submit_disabled {
+        margin: 160px auto 0;
+        font-size: 12px;
+    }
+
+    .form-container__button-login_disabled {
         margin: 248px auto 0px;
         font-size: 12px;
     }
