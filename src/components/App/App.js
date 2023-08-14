@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import NavTab from "../NavTab/NavTab"; 
 import Main from "../Main/Main";
 import Movies from '../Movies/Movies';
@@ -13,6 +15,7 @@ import Header from "../Header/Header";
 function App() {
   const location = useLocation();
   const isLoggedIn = false;
+  const [currentUser, setCurrentUser] = useState({});
 
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
@@ -32,18 +35,20 @@ function App() {
 
   return (
     <div>
-      {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={isLoggedIn} />
-      : renderHeaderAndFooter && <NavTab />}
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-      {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
+      <CurrentUserContext.Provider value={currentUser}>
+        {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={isLoggedIn} />
+        : renderHeaderAndFooter && <NavTab />}
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/saved-movies" element={<SavedMovies />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+        {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
+      </CurrentUserContext.Provider>
     </div>
   );
 }
