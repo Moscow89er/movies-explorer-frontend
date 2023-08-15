@@ -19,6 +19,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi.getUserInfo()
+      .then((data) => {
+        setCurrentUser(data);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
+
 
   function handleRegister({ name, email, password }) {
     return mainApi.register({ name, email, password })
@@ -29,13 +40,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-  }
-
-  function signOut() {
-    localStorage.removeItem('jwt');
-    setLoggedIn(false);
-    navigate('/');
-  };
+  }  
 
   function handleLogin({ email, password }) {
     return mainApi.authorize({ email, password })
@@ -49,6 +54,20 @@ function App() {
         console.log(err);
       })
   }
+
+  function signOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    navigate('/');
+  }
+
+  function handleUpdateUser(userData) {
+    mainApi.editUserInfo(userData)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.log(err))
+  };
 
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
@@ -75,7 +94,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile onSignOut={signOut} />} />
+          <Route path="/profile" element={<Profile onSignOut={signOut} onUpdateUser={handleUpdateUser} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} />} />
           <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route path="/*" element={<NotFound />} />

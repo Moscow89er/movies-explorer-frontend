@@ -1,11 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useFormValidator from "../../utils/useFormValidator";
 
-function Profile ({ onSignOut }) {
+function Profile ({ onSignOut, onUpdateUser }) {
+    const currentUser = useContext(CurrentUserContext);
     const initialState ={
-        name: "Виталий",
-        email: "pochta@yandex.ru"
+        name: currentUser.name,
+        email: currentUser.email
     }
 
     const {
@@ -13,6 +14,11 @@ function Profile ({ onSignOut }) {
         formErrors,
         handleInputChange
     } = useFormValidator(initialState);
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        onUpdateUser(formValues);
+    };
 
     return (
         <main className="profile">
@@ -51,7 +57,7 @@ function Profile ({ onSignOut }) {
                     </div>
                 </div>
             </form>
-            <button type="button" className="profile__button-edit">Редактировать</button>
+            <button type="button" className="profile__button-edit" onClick={handleSubmit}>Редактировать</button>
             <button type="button" className="profile__button-exit" onClick={onSignOut}>Выйти из аккаунта</button>
         </main>
     )

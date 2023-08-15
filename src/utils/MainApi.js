@@ -16,9 +16,6 @@ class MainApi {
     }
 
     getUserInfo() {
-        const token = localStorage.getItem('jwt');
-
-        console.log(token)
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
             headers: this.headers
@@ -26,13 +23,13 @@ class MainApi {
         .then(this._checkResponse)
     }
 
-    editUser(data) {
+    editUserInfo(userData) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
-                name: data.name,
-                email: data.email
+                name: userData.name,
+                email: userData.email
             })
         })
         .then(this._checkResponse)
@@ -63,11 +60,11 @@ class MainApi {
         .then(this._checkResponse)
         .then((data) => {
             if (data.token) {
-                this.setToken(data.token)
-                localStorage.setItem('jwt', data.token)
-                return data
+                this.setToken(data.token);
+                localStorage.setItem('jwt', data.token);
+                return data;
             } else {
-                return
+                return;
             }
         })
     }
