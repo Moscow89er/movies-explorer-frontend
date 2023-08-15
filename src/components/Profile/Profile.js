@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useFormValidator from "../../utils/useFormValidator";
 
-function Profile () {
+function Profile ({ onSignOut }) {
     const initialState ={
         name: "Виталий",
         email: "pochta@yandex.ru"
@@ -52,7 +52,7 @@ function Profile () {
                 </div>
             </form>
             <button type="button" className="profile__button-edit">Редактировать</button>
-            <Link to="/" className="profile__button-exit">Выйти из аккаунта</Link>
+            <button type="button" className="profile__button-exit" onClick={onSignOut}>Выйти из аккаунта</button>
         </main>
     )
 }

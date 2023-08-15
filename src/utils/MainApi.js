@@ -15,7 +15,10 @@ class MainApi {
         this.headers.authorization = `Bearer ${token}`;
     }
 
-    getUser() {
+    getUserInfo() {
+        const token = localStorage.getItem('jwt');
+
+        console.log(token)
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
             headers: this.headers
@@ -48,13 +51,13 @@ class MainApi {
         .then(this._checkResponse)
     }
 
-    authorize(data) {
+    authorize({ email, password }) {
         return fetch(`${this._url}/signin`, {
             method: 'POST',
             headers: this.headers,
             body: JSON.stringify({
-                email: data.email,
-                password: data.password
+                email: email,
+                password: password
             })
         })
         .then(this._checkResponse)
@@ -67,18 +70,6 @@ class MainApi {
                 return
             }
         })
-    }
-
-    checkToken = (token) => {
-        return fetch(`${this._url}/users/me`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(this._checkResponse)
-        .then(data => data)
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import NavTab from "../NavTab/NavTab"; 
@@ -15,10 +15,10 @@ import mainApi from "../../utils/MainApi";
 
 function App() {
   const location = useLocation();
-  const isLoggedIn = false;
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
   const navigate = useNavigate();
+
 
   function handleRegister({ name, email, password }) {
     return mainApi.register({ name, email, password })
@@ -28,8 +28,27 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+  }
+
+  function signOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    navigate('/');
   };
+
+  function handleLogin({ email, password }) {
+    return mainApi.authorize({ email, password })
+      .then((data) => {
+        if (data.token) {
+          setLoggedIn(true);
+          navigate('/movies', {replace: true});
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
@@ -50,15 +69,15 @@ function App() {
   return (
     <div>
       <CurrentUserContext.Provider value={currentUser}>
-        {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={isLoggedIn} />
+        {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={loggedIn} />
         : renderHeaderAndFooter && <NavTab />}
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile onSignOut={signOut} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} />} />
-          <Route path="/signin" element={<Login />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
         {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
