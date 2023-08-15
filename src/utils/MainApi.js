@@ -43,7 +43,7 @@ class MainApi {
                 name: name,
                 email: email,
                 password: password
-            })
+            }),
         })
         .then(this._checkResponse)
     }
@@ -83,7 +83,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi ({
-    url: 'http://api.movies-explorer.89er.nomoredomains.sbs',
+    url: 'http://api.mesto.moscow89er.nomoreparties.sbs',
     headers: {
         'Content-Type': 'application/json'
     }

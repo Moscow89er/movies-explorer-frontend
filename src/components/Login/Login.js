@@ -12,8 +12,7 @@ function Login({ onLogin }) {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        const { email, password } = formValues;
-        onLogin(email, password);
+        onLogin(formValues);
     };
 
     return (
