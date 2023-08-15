@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import NavTab from "../NavTab/NavTab"; 
 import Main from "../Main/Main";
 import Movies from '../Movies/Movies';
@@ -92,11 +93,34 @@ function App() {
         : renderHeaderAndFooter && <NavTab />}
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile onSignOut={signOut} onUpdateUser={handleUpdateUser} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} />} />
           <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          <Route
+            path="/movies"
+            element={
+            <ProtectedRoute 
+              element={Movies}
+              loggedIn={loggedIn}
+            />} 
+          />
+          <Route 
+            path="/saved-movies"
+            element={
+            <ProtectedRoute 
+              element={SavedMovies}
+              loggedIn={loggedIn}
+            />}
+          />
+          <Route 
+            path="/profile"
+            element={
+            <ProtectedRoute 
+              element={Profile} 
+              onSignOut={signOut} 
+              onUpdateUser={handleUpdateUser}
+              loggedIn={loggedIn}
+            />}
+           />
           <Route path="/*" element={<NotFound />} />
         </Routes>
         {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
