@@ -8,7 +8,12 @@ function Login({ onLogin }) {
         password: ""
     };
 
-    const { formValues, formErrors, isValid, handleInputChange } = useFormValidator(initialState);
+    const { 
+        formValues,
+        formErrors,
+        isValid,
+        handleInputChange
+    } = useFormValidator(initialState);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();

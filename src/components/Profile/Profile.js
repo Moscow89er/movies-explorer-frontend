@@ -12,6 +12,7 @@ function Profile ({ onSignOut, onUpdateUser }) {
     const {
         formValues,
         formErrors,
+        isValid,
         handleInputChange
     } = useFormValidator(initialState);
 
@@ -23,7 +24,7 @@ function Profile ({ onSignOut, onUpdateUser }) {
     return (
         <main className="profile">
             <h2 className="profile__title">Привет, {formValues.name}!</h2> 
-            <form className="profile__form">
+            <form className="profile__form" onSubmit={handleSubmit}>
                 <div className="profile__container">
                     <p className="profile__subtitle">Имя</p>
                     <div className="profile__input-wrapper">
@@ -56,8 +57,14 @@ function Profile ({ onSignOut, onUpdateUser }) {
                         <span className="profile__error-email">{formErrors.email}</span>
                     </div>
                 </div>
+                <button
+                    disabled={!isValid}
+                    type="submit"
+                    className={isValid ? "profile__button-edit" : "profile__button-edit_disabled"}
+                >
+                    Редактировать
+                </button>
             </form>
-            <button type="button" className="profile__button-edit" onClick={handleSubmit}>Редактировать</button>
             <button type="button" className="profile__button-exit" onClick={onSignOut}>Выйти из аккаунта</button>
         </main>
     )

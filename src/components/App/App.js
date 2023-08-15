@@ -13,11 +13,15 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import Header from "../Header/Header";
 import mainApi from "../../utils/MainApi";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   const location = useLocation();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,10 +39,13 @@ function App() {
   function handleRegister({ name, email, password }) {
     return mainApi.register({ name, email, password })
       .then(() => {
+        setIsError(false);
+        setIsInfoTooltipOpen(true);
         navigate('/signin', {replace: true});
-        console.log({ name, email, password });
       })
       .catch((err) => {
+        setIsError(true);
+        setIsInfoTooltipOpen(true);
         console.log(err);
       })
   }  
@@ -52,6 +59,8 @@ function App() {
         }
       })
       .catch((err) => {
+        setIsError(true);
+        setIsInfoTooltipOpen(true);
         console.log(err);
       })
   }
@@ -65,9 +74,15 @@ function App() {
   function handleUpdateUser(userData) {
     mainApi.editUserInfo(userData)
       .then((data) => {
+        setIsError(false);
+        setIsInfoTooltipOpen(true);
         setCurrentUser(data);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setIsError(true);
+        setIsInfoTooltipOpen(true);
+        console.log(err);
+      })
   };
 
   const shouldRenderHeaderAndFooter = (pathname) => {
@@ -85,6 +100,10 @@ function App() {
   }
 
   const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
+
+  function closeInfoTooltip() {
+    setIsInfoTooltipOpen(false);
+  };
 
   return (
     <div>
@@ -124,6 +143,14 @@ function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
         {location.pathname === "/profile" ? null : renderHeaderAndFooter && <Footer />}
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          isError={isError}
+          onClose={closeInfoTooltip}
+          tooltipConfirm="Данные сохранены успешно!"
+          tooltipError="Что-то пошло не так!
+          Попробуйте ещё раз."
+        />
       </CurrentUserContext.Provider>
     </div>
   );
