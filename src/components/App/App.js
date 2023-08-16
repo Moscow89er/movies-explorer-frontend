@@ -27,6 +27,12 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      mainApi.setToken(token);
+      setLoggedIn(true);
+    }
+
     if (loggedIn) {
       mainApi.getUserInfo()
       .then((data) => {
@@ -45,7 +51,6 @@ function App() {
         time: movie.duration,
         id: movie.id,
       }));
-      console.log(movies);
       setMovies(movies);
       })
     .catch((err) => console.log(err));
@@ -82,6 +87,7 @@ function App() {
   }
 
   function signOut() {
+    mainApi.setToken('');
     localStorage.removeItem('jwt');
     setLoggedIn(false);
     navigate('/');
