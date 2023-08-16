@@ -23,6 +23,10 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [cardsToShow, setCardsToShow] = useState(16);
 
   const navigate = useNavigate();
 
@@ -43,6 +47,7 @@ function App() {
   }, [loggedIn]);
 
   function handleMovies () {
+    setIsloading(true);
     return moviesApi.getMovies()
     .then((moviesData) => {
       const movies = moviesData.map(movie => ({
@@ -53,7 +58,14 @@ function App() {
       }));
       setMovies(movies);
       })
-    .catch((err) => console.log(err));
+      .catch((err) => {
+        setHasError(err);
+        console.log(err);
+      })
+      .finally(() => {
+        setIsloading(false);
+        setHasSearched(true);
+      });
   }
 
   function handleRegister({ name, email, password }) {
@@ -107,6 +119,14 @@ function App() {
       })
   }
 
+  function closeInfoTooltip() {
+    setIsInfoTooltipOpen(false);
+  }
+
+  function handleLoadMore() {
+    setCardsToShow(cardsToShow + 4);
+  }
+
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
@@ -122,10 +142,6 @@ function App() {
   }
 
   const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
-
-  function closeInfoTooltip() {
-    setIsInfoTooltipOpen(false);
-  };
 
   return (
     <div>
@@ -144,6 +160,11 @@ function App() {
               loggedIn={loggedIn}
               onGetMovies={handleMovies}
               movies={movies}
+              isLoading={isLoading}
+              hasSearched={hasSearched}
+              hasError={hasError}
+              onLoadMore={handleLoadMore}
+              cardsToShow={cardsToShow}
             />} 
           />
           <Route 

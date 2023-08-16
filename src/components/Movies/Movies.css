@@ -1,0 +1,15 @@
+.movies {
+    width: 100%;
+    background: #FAFAFA;
+}
+
+.movies__error {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
