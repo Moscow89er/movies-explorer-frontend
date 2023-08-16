@@ -7,7 +7,7 @@ function FormContainer({ titleText, buttonText, paragraphText, onSubmit, childre
             <div className="form-container__elements">
                 <Link to="/" className="form-container__logo" />
                 <h2 className="form-container__title">{titleText}</h2>
-                <form className="form-container__form" onSubmit={onSubmit}>
+                <form className="form-container__form" onSubmit={onSubmit} noValidate>
                     {children}
                     <button
                         disabled={!isValid}

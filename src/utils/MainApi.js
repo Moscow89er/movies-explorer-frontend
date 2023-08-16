@@ -46,6 +46,15 @@ class MainApi {
             }),
         })
         .then(this._checkResponse)
+        .then((data) => {
+            if (data.token) {
+                this.setToken(data.token);
+                localStorage.setItem('jwt', data.token);
+                return data;
+            } else {
+                return;
+            }
+        })
     }
 
     authorize({ email, password }) {

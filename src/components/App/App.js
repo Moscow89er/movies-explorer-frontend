@@ -13,6 +13,7 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import Header from "../Header/Header";
 import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [movies, setMovies] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,19 +31,33 @@ function App() {
       mainApi.getUserInfo()
       .then((data) => {
         setCurrentUser(data);
-        console.log(data);
       })
       .catch((err) => console.log(err));
     }
   }, [loggedIn]);
 
+  function handleMovies () {
+    return moviesApi.getMovies()
+    .then((moviesData) => {
+      const movies = moviesData.map(movie => ({
+        pic: movie.image.url,
+        title: movie.nameRU,
+        time: movie.duration,
+        id: movie.id,
+      }));
+      console.log(movies);
+      setMovies(movies);
+      })
+    .catch((err) => console.log(err));
+  }
 
   function handleRegister({ name, email, password }) {
     return mainApi.register({ name, email, password })
-      .then(() => {
-        setIsError(false);
-        setIsInfoTooltipOpen(true);
-        navigate('/signin', {replace: true});
+      .then((data) => {
+        if (data.token) {
+          setLoggedIn(true);
+          navigate('/movies', {replace: true});
+        }
       })
       .catch((err) => {
         setIsError(true);
@@ -83,7 +99,7 @@ function App() {
         setIsInfoTooltipOpen(true);
         console.log(err);
       })
-  };
+  }
 
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
@@ -108,7 +124,7 @@ function App() {
   return (
     <div>
       <CurrentUserContext.Provider value={currentUser}>
-        {location.pathname === "/" ? renderHeaderAndFooter && <Header isLoggedIn={loggedIn} />
+        {!loggedIn ? renderHeaderAndFooter && <Header />
         : renderHeaderAndFooter && <NavTab />}
         <Routes>
           <Route path="/" element={<Main />} />
@@ -120,6 +136,8 @@ function App() {
             <ProtectedRoute 
               element={Movies}
               loggedIn={loggedIn}
+              onGetMovies={handleMovies}
+              movies={movies}
             />} 
           />
           <Route 
@@ -128,6 +146,8 @@ function App() {
             <ProtectedRoute 
               element={SavedMovies}
               loggedIn={loggedIn}
+              onGetMovies={handleMovies}
+              movies={movies}
             />}
           />
           <Route 

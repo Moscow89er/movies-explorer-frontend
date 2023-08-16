@@ -24,7 +24,7 @@ function Profile ({ onSignOut, onUpdateUser }) {
     return (
         <main className="profile">
             <h2 className="profile__title">Привет, {formValues.name}!</h2> 
-            <form className="profile__form" onSubmit={handleSubmit}>
+            <form className="profile__form" onSubmit={handleSubmit} noValidate>
                 <div className="profile__container">
                     <p className="profile__subtitle">Имя</p>
                     <div className="profile__input-wrapper">
