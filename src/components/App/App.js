@@ -128,10 +128,6 @@ function App() {
     setIsMoviesPopupOpen(false);
   }
 
-  function handleLoadMore() {
-    setCardsToShow(cardsToShow + 4);
-  }
-
   const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
@@ -168,7 +164,6 @@ function App() {
               isLoading={isLoading}
               hasSearched={hasSearched}
               hasError={hasError}
-              onLoadMore={handleLoadMore}
               cardsToShow={cardsToShow}
               isOpen={isMoviesPopupOpen}
               onClose={closePopups}

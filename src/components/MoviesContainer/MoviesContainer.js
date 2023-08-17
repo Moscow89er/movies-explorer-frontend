@@ -10,7 +10,30 @@ function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow
 
     function handleResize() {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => setWindowDimensions(window.innerWidth), 100);
+        resizeTimeout = setTimeout(() => {
+            setWindowDimensions(window.innerWidth);
+            resetItemsToShow();
+        }, 100)
+    }
+
+    function resetItemsToShow() {
+        if (windowDimensions > 768) {
+            setItemsToShow(prev => Math.max(prev, 16));
+        } else if (windowDimensions > 480) {
+            setItemsToShow(prev => Math.max(prev, 8));
+        } else {
+            setItemsToShow(prev => Math.max(prev, 5));
+        }
+    }
+
+    function handleLoadMore() {
+        if (windowDimensions > 768) {
+            setItemsToShow(itemsToShow + 4);
+        } else if (windowDimensions > 480) {
+            setItemsToShow(itemsToShow + 4);
+        } else {
+            setItemsToShow(itemsToShow + 2);
+        }
     }
 
     useEffect(() => {
@@ -25,13 +48,8 @@ function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow
     }, [moviesData])
 
     useEffect(() => {
-        let count = cardsToShow;
-        if (windowDimensions < 920) count = 8;
-        if (windowDimensions < 620) count = 5;
-        if (windowDimensions < 620 && parentComponent !== "Movies") count = 2;
-
-        setItemsToShow(count);
-    }, [windowDimensions, parentComponent, cardsToShow])
+        resetItemsToShow();
+    }, [])
     
     return (
         <section className="movies-container">
@@ -41,7 +59,7 @@ function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow
                         style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}
                         type="button"
                         className="movies-container__button"
-                        onClick={onLoadMore}
+                        onClick={handleLoadMore}
                     >
                         Ещё
                     </button>

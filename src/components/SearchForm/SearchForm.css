@@ -166,7 +166,7 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 554px) {
   .search__form {
     width: 92%;
     max-width: 292px;
@@ -193,7 +193,9 @@
     width: 92%;
     max-width: 292px;
   }
+}
 
+@media (max-width: 460px) {
   .search__text-checkbox {
     padding: 7px 122px 0 0;
     font-size: 11px;
