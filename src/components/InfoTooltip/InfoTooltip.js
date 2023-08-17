@@ -19,9 +19,9 @@ function InfoTooltip ({ isOpen, onClose, isError, tooltipConfirm, tooltipError }
     return (
         <section className={`popup-tooltip ${isOpen ? "popup-tooltip_opened" : ""}`}>
             <div className="popup-tooltip__container">
-                <img src={isError ? onError : onSucces} className="popup-tooltip__icon" alt="изображение лого"></img>
+                <img src={isError ? onError : onSucces} className="popup-tooltip__icon" alt="изображение лого" />
                 <h2 className="popup-tooltip__title">{isError ? tooltipError : tooltipConfirm}</h2>
-                <button type="button" className="popup-tooltip__close-button"onClick={onClose}></button>
+                <button type="button" className="popup-tooltip__close-button" onClick={onClose} />
             </div>
         </section>
     );

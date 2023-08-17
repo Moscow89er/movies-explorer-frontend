@@ -21,6 +21,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isMoviesPopupOpen, setIsMoviesPopupOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsloading] = useState(false);
@@ -57,6 +58,9 @@ function App() {
         id: movie.id,
       }));
       setMovies(movies);
+      if (movies.length === 0) {
+        setIsMoviesPopupOpen(true);
+      }
       })
       .catch((err) => {
         setHasError(err);
@@ -119,8 +123,9 @@ function App() {
       })
   }
 
-  function closeInfoTooltip() {
+  function closePopups() {
     setIsInfoTooltipOpen(false);
+    setIsMoviesPopupOpen(false);
   }
 
   function handleLoadMore() {
@@ -165,6 +170,8 @@ function App() {
               hasError={hasError}
               onLoadMore={handleLoadMore}
               cardsToShow={cardsToShow}
+              isOpen={isMoviesPopupOpen}
+              onClose={closePopups}
             />} 
           />
           <Route 
@@ -193,7 +200,7 @@ function App() {
         <InfoTooltip
           isOpen={isInfoTooltipOpen}
           isError={isError}
-          onClose={closeInfoTooltip}
+          onClose={closePopups}
           tooltipConfirm="Данные сохранены успешно!"
           tooltipError="Что-то пошло не так!
           Попробуйте ещё раз."
