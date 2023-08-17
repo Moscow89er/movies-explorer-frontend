@@ -23,15 +23,20 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isMoviesPopupOpen, setIsMoviesPopupOpen] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [isLoading, setIsloading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(false);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
 
   const navigate = useNavigate();
+  const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
+
     if (token) {
       mainApi.setToken(token);
       setLoggedIn(true);
@@ -44,19 +49,37 @@ function App() {
       })
       .catch((err) => console.log(err));
     }
-  }, [loggedIn]);
+  }, [loggedIn])
+
+  useEffect(() => {
+    const savedMovies = JSON.parse(localStorage.getItem('movies'));
+
+    if (savedMovies) setMovies(savedMovies);
+  }, [])
+
+  useEffect(() => {
+    updateDisplayedMovies();
+  }, [searchKeyword, isShortMoviesChecked])
 
   function handleMovies () {
     setIsloading(true);
     return moviesApi.getMovies()
     .then((moviesData) => {
       const movies = moviesData.map(movie => ({
-        pic: movie.image.url,
-        title: movie.nameRU,
-        time: movie.duration,
-        id: movie.id,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image.url,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: movie.image.formats.thumbnail.url,
+        movieId: movie.id
       }));
       setMovies(movies);
+      localStorage.setItem('movies', JSON.stringify(movies));
       if (movies.length === 0) {
         setIsMoviesPopupOpen(true);
       }
@@ -104,6 +127,7 @@ function App() {
   function signOut() {
     mainApi.setToken('');
     localStorage.removeItem('jwt');
+    localStorage.removeItem('movies');
     setLoggedIn(false);
     navigate('/');
   }
@@ -127,7 +151,27 @@ function App() {
     setIsMoviesPopupOpen(false);
   }
 
-  const shouldRenderHeaderAndFooter = (pathname) => {
+  function filterMoviesByKeyword(movies, keyword) {
+    const loweredKeyword = keyword.toLowerCase();
+    console.log(movies)
+    return movies.filter(movie =>
+      (movie.nameRU && movie.nameRU.toLowerCase().includes(loweredKeyword)) ||
+      (movie.nameEN && movie.nameEN.toLowerCase().includes(loweredKeyword)) ||
+      (movie.description && movie.description.toLowerCase().includes(loweredKeyword))
+    )
+  }
+
+  function filteredShortMovies(movies, isChecked) {
+    return isChecked ? movies.filter(movie => movie.duration <= 40) : movies;
+  }
+
+  function updateDisplayedMovies() {
+    let filteredMovies = [...filterMoviesByKeyword(movies, searchKeyword)];
+    filteredMovies = [...filteredShortMovies(filteredMovies, isShortMoviesChecked)];
+    setDisplayedMovies(filteredMovies);
+  }
+
+  function shouldRenderHeaderAndFooter(pathname) {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
 
@@ -140,8 +184,6 @@ function App() {
     }
     return false;
   }
-
-  const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   return (
     <div>
@@ -159,12 +201,14 @@ function App() {
               element={Movies}
               loggedIn={loggedIn}
               onGetMovies={handleMovies}
-              movies={movies}
+              movies={displayedMovies}
               isLoading={isLoading}
               hasSearched={hasSearched}
               hasError={hasError}
               isOpen={isMoviesPopupOpen}
               onClose={closePopups}
+              onKeyword={setSearchKeyword}
+              onShortMoviesChecked={setIsShortMoviesChecked}
             />} 
           />
           <Route 

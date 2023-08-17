@@ -2,10 +2,26 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesContainer/MoviesContainer";
 
-function Movies ({ movies, onGetMovies, isLoading, hasSearched, hasError, onLoadMore, cardsToShow, onClose, isOpen }) {
-    return (
+function Movies ({ 
+    movies,
+    onGetMovies,
+    isLoading,
+    hasSearched,
+    hasError,
+    onLoadMore,
+    cardsToShow,
+    onClose,
+    isOpen,
+    onKeyword,
+    onShortMoviesChecked,
+    onFilter
+}) {return (
         <main className="movies">
-            <SearchForm onGetMovies={onGetMovies} />
+            <SearchForm 
+                onGetMovies={onGetMovies}
+                onKeyword={onKeyword}
+                onShortMoviesChecked={onShortMoviesChecked}
+            />
             {isLoading && <Preloader />}
             {hasSearched && !isLoading && !hasError && movies.length > 0 && 
             <MoviesCard 

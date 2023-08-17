@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useFormValidator from "../../utils/useFormValidator";
 
-function SearchForm ({ onGetMovies }) {
+function SearchForm ({ onGetMovies, onKeyword, onShortMoviesChecked }) {
     const [searchError, setSearchError] = useState("");
     const {
         formValues,
@@ -15,8 +15,13 @@ function SearchForm ({ onGetMovies }) {
             setSearchError("Нужно ввести ключевое слово");
         } else {
             setSearchError("");
+            onKeyword(formValues.search);
             onGetMovies();
         }
+    }
+
+    function handleCheckboxChange(evt) {
+        onShortMoviesChecked(evt.target.checked);
     }
 
     return (
@@ -35,7 +40,7 @@ function SearchForm ({ onGetMovies }) {
             {searchError && <p className="search__error">{searchError}</p>}
             <div className="search__container">
                 <label className="search__checkbox">
-                    <input type="checkbox" className="search__input-checkbox" />
+                    <input type="checkbox" className="search__input-checkbox" onChange={handleCheckboxChange} />
                     <span className="search__text-checkbox">Короткометражки</span>
                 </label>
             </div>
