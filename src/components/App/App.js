@@ -27,7 +27,6 @@ function App() {
   const [isLoading, setIsloading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [cardsToShow, setCardsToShow] = useState(16);
 
   const navigate = useNavigate();
 
@@ -164,7 +163,6 @@ function App() {
               isLoading={isLoading}
               hasSearched={hasSearched}
               hasError={hasError}
-              cardsToShow={cardsToShow}
               isOpen={isMoviesPopupOpen}
               onClose={closePopups}
             />} 

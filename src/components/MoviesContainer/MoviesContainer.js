@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow }) {
+function MoviesContainer ({ moviesData, parentComponent }) {
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
     const [movies, setMovies] = useState([]);
     const [itemsToShow, setItemsToShow] = useState(16);
@@ -17,13 +17,15 @@ function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow
     }
 
     function resetItemsToShow() {
-        if (windowDimensions > 768) {
-            setItemsToShow(prev => Math.max(prev, 16));
+        let initialCount;
+        if (windowDimensions > 780) {
+            initialCount = 16;
         } else if (windowDimensions > 480) {
-            setItemsToShow(prev => Math.max(prev, 8));
+            initialCount = 8;
         } else {
-            setItemsToShow(prev => Math.max(prev, 5));
+            initialCount = 5;
         }
+        setItemsToShow(prev => Math.min(Math.max(prev, initialCount), movies.length));
     }
 
     function handleLoadMore() {
@@ -49,7 +51,7 @@ function MoviesContainer ({ moviesData, parentComponent, onLoadMore, cardsToShow
 
     useEffect(() => {
         resetItemsToShow();
-    }, [])
+    }, [movies, windowDimensions])
     
     return (
         <section className="movies-container">

@@ -30,7 +30,8 @@
 
 .movies-card__pic {
     width: 100%;
-    max-height: 150px;
+    height: 150px;
+    object-position: center;
     object-fit: cover;
     border-top-right-radius: 5%;
     border-top-left-radius: 5%;
@@ -125,7 +126,7 @@
     }
 
     .movies-card__pic {
-        max-height: 190px;
+        height: 190px;
     }
 }
 
@@ -137,10 +138,6 @@
     .movies-card {
         width: 300px;
     }
-
-    .movies-card__pic {
-        max-height: 168px;
-    }
 }
 
 @media (max-width: 460px) {
@@ -148,5 +145,9 @@
         margin: 44px auto 30px;
         grid-auto-rows: auto;
         row-gap: 20px;
+    }
+
+    .movies-card__pic {
+        height: 168px;
     }
 }
