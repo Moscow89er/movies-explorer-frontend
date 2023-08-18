@@ -28,12 +28,11 @@ function App() {
   const [hasError, setHasError] = useState(false);
 
   const [movies, setMovies] = useState(null);
-  const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') || "");
-  const [moviesInputValue, setMoviesInputValue] = useState(localStorage.getItem('searchKeyword') || "");
-  const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(JSON.parse(localStorage.getItem('isShortMoviesChecked')) || false);
+  const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
+  const [moviesInputValue, setMoviesInputValue] = useState(localStorage.getItem('searchKeyword') ?? "");
+  const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(JSON.parse(localStorage.getItem('isShortMoviesChecked')) ?? false);
 
   const navigate = useNavigate();
-  const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -52,12 +51,22 @@ function App() {
     }
   }, [loggedIn])
 
+  useEffect(() => {
+    if(loggedIn) {
+      localStorage.setItem('searchKeyword', searchKeyword);
+      localStorage.setItem(
+        'isShortMoviesChecked',
+        JSON.stringify(isShortMoviesChecked)
+      );
+    }
+  }, [loggedIn, searchKeyword, isShortMoviesChecked])
+
   useEffect (() => {
     if (!movies && searchKeyword.length > 0) {
       if ('movies' in localStorage) {
         setMovies(JSON.parse(localStorage.getItem('movies')));
         setSearchKeyword(localStorage.getItem('searchKeyword'));
-        setIsShortMoviesChecked(JSON.parse(localStorage.getItem('beatFilmsIsShort')));
+        setIsShortMoviesChecked(JSON.parse(localStorage.getItem('isShortMoviesChecked')));
       } else {
         setIsloading(true);
         moviesApi.getMovies()
@@ -109,7 +118,7 @@ function App() {
     })
   }, [])
 
-  function handleRegister({ name, email, password }) {
+  const handleRegister = ({ name, email, password }) => {
     return mainApi.register({ name, email, password })
       .then((data) => {
         if (data.token) {
@@ -124,7 +133,7 @@ function App() {
       })
   }  
 
-  function handleLogin({ email, password }) {
+  const handleLogin = ({ email, password }) => {
     return mainApi.authorize({ email, password })
       .then((data) => {
         if (data.token) {
@@ -139,17 +148,21 @@ function App() {
       })
   }
 
-  function signOut() {
+  const signOut = () => {
     mainApi.setToken('');
     localStorage.removeItem('jwt');
     localStorage.removeItem('movies');
     localStorage.removeItem('searchKeyword');
     localStorage.removeItem('isShortMoviesChecked');
+    setMovies(null);
+    setSearchKeyword('');
+    setIsShortMoviesChecked(false);
+    setMoviesInputValue('');
     setLoggedIn(false);
     navigate('/');
   }
 
-  function handleUpdateUser(userData) {
+  const handleUpdateUser = (userData) => {
     mainApi.editUserInfo(userData)
       .then((data) => {
         setIsError(false);
@@ -163,12 +176,12 @@ function App() {
       })
   }
 
-  function closePopups() {
+  const closePopups = () => {
     setIsInfoTooltipOpen(false);
     setIsMoviesPopupOpen(false);
   }
 
-  function shouldRenderHeaderAndFooter(pathname) {
+  const shouldRenderHeaderAndFooter = (pathname) => {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
 
@@ -181,6 +194,8 @@ function App() {
     }
     return false;
   }
+
+  const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   return (
     <div>

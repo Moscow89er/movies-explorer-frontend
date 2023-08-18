@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 
-function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputValue,  setSearchKeyword }) {
+function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputValue, setSearchKeyword }) {
     const [searchError, setSearchError] = useState("");
 
     const handleSearchInput = (evt) => {
@@ -11,10 +11,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
         setIsShortChecked(!isShortChecked);
     }
 
-    const handleSearchButtonClick = useCallback(
-        input => setSearchKeyword(input),
-        [setSearchKeyword]
-    )
+    const handleSearchButtonClick = (input) => setSearchKeyword(input);
 
     const handleSearch = (evt) => {
         evt.preventDefault();
@@ -35,6 +32,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
                     className="search__input"
                     placeholder="Фильм"
                     onChange={handleSearchInput}
+                    value={inputValue}
                     required
                 />
                 <button type="submit" className="search__button" />
@@ -50,4 +48,4 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
     )
 }
 
-export default SearchForm;
+export default React.memo(SearchForm);

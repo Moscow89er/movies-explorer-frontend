@@ -22,7 +22,6 @@ function Movies ({
                 setIsShortChecked={setIsShortChecked}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
-                
                 setSearchKeyword={setSearchKeyword}
             />
             {isLoading && <Preloader />}
@@ -33,7 +32,7 @@ function Movies ({
                 onLoadMore={onLoadMore}
                 cardsToShow={cardsToShow}
             />}
-            {hasSearched && !isLoading && hasError && movies.length &&
+            {hasSearched && !isLoading && hasError && movies.length > 0 &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,
                 проблема с соединением или сервер недоступен.
