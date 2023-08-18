@@ -27,7 +27,7 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) ?? null);
   const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [moviesInputValue, setMoviesInputValue] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(JSON.parse(localStorage.getItem('isShortMoviesChecked')) ?? false);
@@ -50,6 +50,15 @@ function App() {
       .catch((err) => console.log(err));
     }
   }, [loggedIn])
+
+  const removeAllMoviesData = () => localStorage.removeItem('movies')
+
+  useEffect(() => {
+      window.addEventListener('beforeunload', removeAllMoviesData);
+      return () => {
+          window.removeEventListener('beforeunload', removeAllMoviesData);
+      }
+  }, [])
 
   useEffect(() => {
     if(loggedIn) {
@@ -101,7 +110,7 @@ function App() {
 
   const filterMovies = useCallback((movies, searchKeyword, isShortMoviesChecked) => {
     if (!movies) {
-      return [];
+      return null;
     }
 
     const loweredKeyword = searchKeyword ? searchKeyword.toLowerCase() : "";
@@ -226,7 +235,6 @@ function App() {
               setInputValue={setMoviesInputValue}
               setIsShortChecked={setIsShortMoviesChecked}
               isShortChecked={isShortMoviesChecked}
-              
               setSearchKeyword={setSearchKeyword}
             />}
           />

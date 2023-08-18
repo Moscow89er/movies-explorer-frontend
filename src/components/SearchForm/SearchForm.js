@@ -32,7 +32,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
                     className="search__input"
                     placeholder="Фильм"
                     onChange={handleSearchInput}
-                    value={inputValue}
+                    value={inputValue || ""}
                     required
                 />
                 <button type="submit" className="search__button" />
@@ -48,4 +48,4 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
     )
 }
 
-export default React.memo(SearchForm);
+export default SearchForm;
