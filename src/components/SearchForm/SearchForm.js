@@ -1,38 +1,40 @@
-import React, { useState } from "react";
-import useFormValidator from "../../utils/useFormValidator";
+import React, { useCallback, useState } from "react";
 
-function SearchForm ({ getMovies, isShortChecked, setIsShortChecked, setInputValue, inputValue }) {
+function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputValue,  setSearchKeyword }) {
     const [searchError, setSearchError] = useState("");
-    const {
-        formValues,
-        isValid,
-        handleInputChange
-    } = useFormValidator({ search: "" });
 
-    function filterMovies(evt) {
-        evt.preventDefault();
-        if (!isValid || !formValues.search) {
-            setSearchError("Нужно ввести ключевое слово");
-        } else {
-            setSearchError("");
-            setInputValue(formValues.search);
-            getMovies(formValues.search);
-        }
+    const handleSearchInput = (evt) => {
+        setInputValue(evt.target.value);
     }
 
     function handleCheckboxChange() {
         setIsShortChecked(!isShortChecked);
     }
 
+    const handleSearchButtonClick = useCallback(
+        input => setSearchKeyword(input),
+        [setSearchKeyword]
+    )
+
+    const handleSearch = (evt) => {
+        evt.preventDefault();
+        if (!inputValue) {
+            setSearchError("Нужно ввести ключевое слово");
+        } else {
+            setSearchError("");
+            handleSearchButtonClick(inputValue);
+        }
+    }
+
     return (
         <div className="search">
-            <form className="search__form"  onSubmit={filterMovies} noValidate>
+            <form className="search__form"  onSubmit={handleSearch} noValidate>
                 <input
                     type="text"
                     name="search"
                     className="search__input"
                     placeholder="Фильм"
-                    onChange={handleInputChange}
+                    onChange={handleSearchInput}
                     required
                 />
                 <button type="submit" className="search__button" />

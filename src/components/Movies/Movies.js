@@ -4,7 +4,6 @@ import MoviesCard from "../MoviesContainer/MoviesContainer";
 
 function Movies ({ 
     movies,
-    getMovies,
     isLoading,
     hasSearched,
     hasError,
@@ -13,19 +12,22 @@ function Movies ({
     isShortChecked,
     setIsShortChecked,
     inputValue,
-    setInputValue
+    setInputValue,
+    
+    setSearchKeyword
 }) {return (
         <main className="movies">
-            <SearchForm 
-                getMovies={getMovies}
+            <SearchForm
                 isShortChecked={isShortChecked}
                 setIsShortChecked={setIsShortChecked}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
+                
+                setSearchKeyword={setSearchKeyword}
             />
             {isLoading && <Preloader />}
             {hasSearched && !isLoading && !hasError && movies.length > 0 && 
-            <MoviesCard 
+            <MoviesCard
                 moviesData={movies}
                 parentComponent="Movies"
                 onLoadMore={onLoadMore}

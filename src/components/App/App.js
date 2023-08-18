@@ -52,7 +52,7 @@ function App() {
     }
   }, [loggedIn])
 
-  function handleMovies () {
+  useEffect (() => {
     if (!movies && searchKeyword.length > 0) {
       if ('movies' in localStorage) {
         setMovies(JSON.parse(localStorage.getItem('movies')));
@@ -60,7 +60,7 @@ function App() {
         setIsShortMoviesChecked(JSON.parse(localStorage.getItem('beatFilmsIsShort')));
       } else {
         setIsloading(true);
-        return moviesApi.getMovies()
+        moviesApi.getMovies()
           .then((moviesData) => {
             const movies = moviesData.map(movie => ({
               country: movie.country,
@@ -88,7 +88,26 @@ function App() {
           });
       }
     }
-  }
+  }, [movies, searchKeyword, isShortMoviesChecked])
+
+  const filterMovies = useCallback((movies, searchKeyword, isShortMoviesChecked) => {
+    if (!movies) {
+      return [];
+    }
+
+    const loweredKeyword = searchKeyword ? searchKeyword.toLowerCase() : "";
+
+    return movies.filter(movie => {
+      const matchesKeyword =
+        (movie.nameRU && movie.nameRU.toLowerCase().includes(loweredKeyword)) ||
+        (movie.nameEN && movie.nameEN.toLowerCase().includes(loweredKeyword)) ||
+        (movie.description && movie.description.toLowerCase().includes(loweredKeyword))
+
+      const matchesDuration = isShortMoviesChecked ? movie.duration <= 40 : true;
+
+      return matchesKeyword && matchesDuration;
+    })
+  }, [])
 
   function handleRegister({ name, email, password }) {
     return mainApi.register({ name, email, password })
@@ -149,25 +168,6 @@ function App() {
     setIsMoviesPopupOpen(false);
   }
 
-  const filterMovies = useCallback((movies, searchKeyword, isShortMoviesChecked) => {
-    if (!movies) {
-      return [];
-    }
-
-    const loweredKeyword = searchKeyword.toLowerCase();
-
-    return movies.filter(movie => {
-      const matchesKeyword =
-        (movie.nameRU && movie.nameRU.toLowerCase().includes(loweredKeyword)) ||
-        (movie.nameEN && movie.nameEN.toLowerCase().includes(loweredKeyword)) ||
-        (movie.description && movie.description.toLowerCase().includes(loweredKeyword))
-
-      const matchesDuration = isShortMoviesChecked ? movie.duration <= 40 : true;
-
-      return matchesKeyword && matchesDuration;
-    })
-  }, [])
-
   function shouldRenderHeaderAndFooter(pathname) {
     const pathWithoutNavAndFooter = ["/signin", "/signup"];
     const allKnownPaths = ["/", "/movies", "/saved-movies", "/profile", "/signin", "/signup"];
@@ -197,21 +197,22 @@ function App() {
             <ProtectedRoute 
               element={Movies}
               loggedIn={loggedIn}
-              getMovies={handleMovies}
               movies={filterMovies(
                 movies,
                 searchKeyword,
                 isShortMoviesChecked
               )}
-              inputValue={moviesInputValue}
-              setInputValue={setMoviesInputValue}
               isLoading={isLoading}
               hasSearched={hasSearched}
               hasError={hasError}
               isOpen={isMoviesPopupOpen}
               onClose={closePopups}
+              inputValue={moviesInputValue}
+              setInputValue={setMoviesInputValue}
               setIsShortChecked={setIsShortMoviesChecked}
               isShortChecked={isShortMoviesChecked}
+              
+              setSearchKeyword={setSearchKeyword}
             />}
           />
           <Route 
@@ -220,7 +221,6 @@ function App() {
             <ProtectedRoute 
               element={SavedMovies}
               loggedIn={loggedIn}
-              onGetMovies={handleMovies}
               movies={movies}
             />}
           />
