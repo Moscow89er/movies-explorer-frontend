@@ -4,23 +4,24 @@ import MoviesCard from "../MoviesContainer/MoviesContainer";
 
 function Movies ({ 
     movies,
-    onGetMovies,
+    getMovies,
     isLoading,
     hasSearched,
     hasError,
     onLoadMore,
     cardsToShow,
-    onClose,
-    isOpen,
-    onKeyword,
-    onShortMoviesChecked,
-    onFilter
+    isShortChecked,
+    setIsShortChecked,
+    inputValue,
+    setInputValue
 }) {return (
         <main className="movies">
             <SearchForm 
-                onGetMovies={onGetMovies}
-                onKeyword={onKeyword}
-                onShortMoviesChecked={onShortMoviesChecked}
+                getMovies={getMovies}
+                isShortChecked={isShortChecked}
+                setIsShortChecked={setIsShortChecked}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
             />
             {isLoading && <Preloader />}
             {hasSearched && !isLoading && !hasError && movies.length > 0 && 
@@ -30,12 +31,6 @@ function Movies ({
                 onLoadMore={onLoadMore}
                 cardsToShow={cardsToShow}
             />}
-            {isOpen &&
-            <div className="movies__popup">
-                <button className="movies__close-button" onClick={onClose}/>
-                <p className="movies__error-nothing">Ничего не найдено.</p>
-            </div>
-            }
             {hasSearched && !isLoading && hasError && movies.length &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,

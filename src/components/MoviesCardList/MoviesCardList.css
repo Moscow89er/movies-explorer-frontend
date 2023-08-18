@@ -115,6 +115,56 @@
     background-image: url("../../images/movies_card_list_delete_icon_hovered.svg");
 }
 
+.movies-cardlist__popup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    border: none;
+    margin: 0 auto;
+    border-radius: 5%;
+    background: #FAFAFA;
+    position: fixed;
+        top: 50%;
+        left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.movies-cardlist__close-button {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/nav_tab_close_icon.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+        top: -16px;
+        right: -12px;
+}
+
+.movies-cardlist__error-nothing {
+    margin: 0;
+    padding: 20px 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.movies-cardlist__error {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+}
+
 @media (max-width: 920px) {
     .movies-cardlist {
         margin: 86px auto 30px;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useFormValidator from "../../utils/useFormValidator";
 
-function SearchForm ({ onGetMovies, onKeyword, onShortMoviesChecked }) {
+function SearchForm ({ getMovies, isShortChecked, setIsShortChecked, setInputValue, inputValue }) {
     const [searchError, setSearchError] = useState("");
     const {
         formValues,
@@ -9,24 +9,24 @@ function SearchForm ({ onGetMovies, onKeyword, onShortMoviesChecked }) {
         handleInputChange
     } = useFormValidator({ search: "" });
 
-    function getMovies(evt) {
+    function filterMovies(evt) {
         evt.preventDefault();
         if (!isValid || !formValues.search) {
             setSearchError("Нужно ввести ключевое слово");
         } else {
             setSearchError("");
-            onKeyword(formValues.search);
-            onGetMovies();
+            setInputValue(formValues.search);
+            getMovies(formValues.search);
         }
     }
 
-    function handleCheckboxChange(evt) {
-        onShortMoviesChecked(evt.target.checked);
+    function handleCheckboxChange() {
+        setIsShortChecked(!isShortChecked);
     }
 
     return (
         <div className="search">
-            <form className="search__form"  onSubmit={getMovies} noValidate>
+            <form className="search__form"  onSubmit={filterMovies} noValidate>
                 <input
                     type="text"
                     name="search"
@@ -40,7 +40,7 @@ function SearchForm ({ onGetMovies, onKeyword, onShortMoviesChecked }) {
             {searchError && <p className="search__error">{searchError}</p>}
             <div className="search__container">
                 <label className="search__checkbox">
-                    <input type="checkbox" className="search__input-checkbox" onChange={handleCheckboxChange} />
+                    <input type="checkbox" className="search__input-checkbox" checked={isShortChecked} onChange={handleCheckboxChange} />
                     <span className="search__text-checkbox">Короткометражки</span>
                 </label>
             </div>
