@@ -187,7 +187,6 @@ function App() {
 
   const closePopups = () => {
     setIsInfoTooltipOpen(false);
-    setIsMoviesPopupOpen(false);
   }
 
   const shouldRenderHeaderAndFooter = (pathname) => {
@@ -230,7 +229,6 @@ function App() {
               hasSearched={hasSearched}
               hasError={hasError}
               isOpen={isMoviesPopupOpen}
-              onClose={closePopups}
               inputValue={moviesInputValue}
               setInputValue={setMoviesInputValue}
               setIsShortChecked={setIsShortMoviesChecked}
@@ -238,7 +236,7 @@ function App() {
               setSearchKeyword={setSearchKeyword}
             />}
           />
-          <Route 
+          <Route
             path="/saved-movies"
             element={
             <ProtectedRoute 

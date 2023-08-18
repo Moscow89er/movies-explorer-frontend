@@ -13,7 +13,7 @@ function Movies ({
     setIsShortChecked,
     inputValue,
     setInputValue,
-    
+    onClose,
     setSearchKeyword
 }) {return (
         <main className="movies">
@@ -32,6 +32,11 @@ function Movies ({
                 onLoadMore={onLoadMore}
                 cardsToShow={cardsToShow}
             />}
+            {movies && movies.length === 0 && 
+            <div className="movies__popup">
+                <p className="movies__error-nothing">Ничего не найдено.</p>
+            </div>
+            }
             {hasSearched && !isLoading && hasError && movies.length > 0 &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,

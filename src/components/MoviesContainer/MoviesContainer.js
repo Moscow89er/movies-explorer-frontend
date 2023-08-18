@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function MoviesContainer ({ moviesData, parentComponent, onClose }) {
+function MoviesContainer ({ moviesData, parentComponent }) {
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
     const [movies, setMovies] = useState([]);
     const [itemsToShow, setItemsToShow] = useState(16);
@@ -41,7 +41,7 @@ function MoviesContainer ({ moviesData, parentComponent, onClose }) {
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [handleResize])
+    }, [])
 
     useEffect(() => {
         if (moviesData) {
@@ -55,7 +55,7 @@ function MoviesContainer ({ moviesData, parentComponent, onClose }) {
     
     return (
         <section className="movies-container">
-                <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} onClose={onClose} />
+                <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} />
                 {(movies.length > itemsToShow && parentComponent === 'Movies') ? (
                     <button 
                         style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}

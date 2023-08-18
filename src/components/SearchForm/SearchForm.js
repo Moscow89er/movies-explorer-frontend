@@ -48,4 +48,4 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
     )
 }
 
-export default SearchForm;
+export default React.memo(SearchForm);
