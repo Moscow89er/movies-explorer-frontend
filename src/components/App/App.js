@@ -34,6 +34,11 @@ function App() {
 
   const navigate = useNavigate();
 
+  const pageBackgroundClass = 
+    location.pathname === "/movies" || location.pathname === "/saved-movies"
+    ? "page page__movies-bg"
+    : "page";
+
   useEffect(() => {
     const token = localStorage.getItem('jwt');
 
@@ -206,7 +211,7 @@ function App() {
   const renderHeaderAndFooter = shouldRenderHeaderAndFooter(location.pathname);
 
   return (
-    <div>
+    <div className={pageBackgroundClass}>
       <CurrentUserContext.Provider value={currentUser}>
         {!loggedIn ? renderHeaderAndFooter && <Header />
         : renderHeaderAndFooter && <NavTab />}

@@ -13,7 +13,6 @@ function Movies ({
     setIsShortChecked,
     inputValue,
     setInputValue,
-    onClose,
     setSearchKeyword
 }) {return (
         <main className="movies">
@@ -37,7 +36,7 @@ function Movies ({
                 <p className="movies__error-nothing">Ничего не найдено.</p>
             </div>
             }
-            {hasSearched && !isLoading && hasError && movies.length > 0 &&
+            {hasSearched && !isLoading && hasError && movies.length &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,
                 проблема с соединением или сервер недоступен.

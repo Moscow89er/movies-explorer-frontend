@@ -1,4 +1,13 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     font-family: 'Inter', Arial, sans-serif;
@@ -14,6 +23,11 @@
     height: 100%;
     box-sizing: border-box;
 }
+
+.page__movies-bg {
+    background-color: #FAFAFA;
+}
+
 @media (max-width: 696px) {
     .page {
         padding: 0;
