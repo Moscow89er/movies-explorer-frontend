@@ -21,7 +21,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [isMoviesPopupOpen, setIsMoviesPopupOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
@@ -233,7 +232,6 @@ function App() {
               isLoading={isLoading}
               hasSearched={hasSearched}
               hasError={hasError}
-              isOpen={isMoviesPopupOpen}
               inputValue={moviesInputValue}
               setInputValue={setMoviesInputValue}
               setIsShortChecked={setIsShortMoviesChecked}
