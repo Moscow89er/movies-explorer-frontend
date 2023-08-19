@@ -1,16 +1,20 @@
 import React from "react";
 import moviesApi from "../../utils/MoviesApi";
 
-function MoviesCardList ({ movies, parentComponent, onMovieSave }) {
+function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete }) {
     const handleLikeClick = (movie) => {
         onMovieSave(movie);
+    }
+
+    const handleDeleteClick = (movie) => {
+        onMovieDelete(movie);
     }
 
     return (
         <ul className="movies-cardlist">
             {movies.map((movie) => {
                 return (
-                    <li className="movies-card" key={movie.id ?? movie.movieId}>
+                    <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
                         <img 
                             src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
                             className="movies-card__pic"
@@ -24,7 +28,7 @@ function MoviesCardList ({ movies, parentComponent, onMovieSave }) {
                                             <span className="movies-card__circle" />
                                         </label>
                                 ) : (
-                                    <button className="movies-card__button-delete"></button>
+                                    <button className="movies-card__button-delete" onClick={() => handleDeleteClick(movie)}></button>
                                 )}
                         </div>
                         <p className="movies-card__duration">{movie.duration}</p>

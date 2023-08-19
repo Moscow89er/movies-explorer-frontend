@@ -85,7 +85,10 @@ class MainApi {
     deleteMovie(movieId) {
         return fetch(`${this._url}/movies/${movieId}`, {
             method: 'DELETE',
-            headers: this.headers
+            headers: {
+                ...this.headers,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
         })
         .then(this._checkResponse)
     }

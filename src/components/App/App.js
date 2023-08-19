@@ -26,12 +26,12 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) ?? null);
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) ?? []);
   const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [moviesInputValue, setMoviesInputValue] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(JSON.parse(localStorage.getItem('isShortMoviesChecked')) ?? false);
 
-  const [savedMovies, setSavedMovies] = useState(null);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesSearchKeyword, setSavedMoviesSearchKeyword] = useState("");
   const [savedMoviesInputValue, setSavedMoviesInputValue] = useState("");
   const [isShortSavedMoviesChecked, setIsShortSavedMoviesChecked] = useState(false);
@@ -99,14 +99,8 @@ function App() {
     }
   }, [movies, searchKeyword, isShortMoviesChecked])
 
-  const handleLikeClick = (movie) => {
+  const handleLikeMovie = (movie) => {
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
-
-    console.log(movies)
-
-    console.log(currentUser);
-
-    console.log('Ты кликнул, чтобы сохранить фильм')
 
     if (!isMovieSaved) {
       mainApi
@@ -127,6 +121,17 @@ function App() {
         .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
         .catch((err) => console.log(err))
     }
+  }
+
+  const handleDeleteMovie = (movie) => {
+    mainApi
+      .deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies((state) => 
+          state.filter((item) => item.movieId !== movie.movieId)
+        )
+      })
+      .catch((err) => console.log(err))
   }
 
   const filterMovies = useCallback((movies, searchKeyword, isShortMoviesChecked) => {
@@ -271,7 +276,7 @@ function App() {
               setIsShortChecked={setIsShortMoviesChecked}
               isShortChecked={isShortMoviesChecked}
               setSearchKeyword={setSearchKeyword}
-              onMovieSave={handleLikeClick}
+              onMovieSave={handleLikeMovie}
             />}
           />
           <Route
@@ -282,15 +287,16 @@ function App() {
               loggedIn={loggedIn}
               movies={filterMovies(
                 savedMovies,
-                searchKeyword,
-                isShortMoviesChecked
+                savedMoviesSearchKeyword,
+                isShortSavedMoviesChecked
               )}
               isLoading={isLoading}
               inputValue={savedMoviesInputValue}
-              setInputValue={savedMoviesInputValue}
+              setInputValue={setSavedMoviesInputValue}
               setIsShortChecked={setIsShortSavedMoviesChecked}
               isShortChecked={isShortSavedMoviesChecked}
               setSearchKeyword={setSavedMoviesSearchKeyword}
+              onMovieDelete={handleDeleteMovie}
             />}
           />
           <Route 

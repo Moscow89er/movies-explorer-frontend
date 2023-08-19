@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function MoviesContainer ({ moviesData, parentComponent, onMovieSave }) {
+function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDelete }) {
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
     const [movies, setMovies] = useState([]);
     const [itemsToShow, setItemsToShow] = useState(16);
@@ -55,7 +55,7 @@ function MoviesContainer ({ moviesData, parentComponent, onMovieSave }) {
     
     return (
         <section className="movies-container">
-                <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} onMovieSave={onMovieSave} />
+                <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} onMovieSave={onMovieSave} onMovieDelete={onMovieDelete} />
                 {(movies.length > itemsToShow && parentComponent === 'Movies') ? (
                     <button 
                         style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}

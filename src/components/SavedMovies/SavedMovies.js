@@ -9,7 +9,8 @@ function SavedMovies ({
     setInputValue,
     setIsShortChecked,
     isShortChecked,
-    setSearchKeyword
+    setSearchKeyword,
+    onMovieDelete
 }) {
     return (
         <main className="saved-movies">
@@ -20,7 +21,7 @@ function SavedMovies ({
                 isShortChecked={isShortChecked}
                 setSearchKeyword={setSearchKeyword}
             />
-            <MoviesCard moviesData={movies} />
+            <MoviesCard moviesData={movies} onMovieDelete={onMovieDelete} />
             {isLoading && <Preloader />}
         </main>
     )
