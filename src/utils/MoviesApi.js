@@ -1,7 +1,7 @@
 class MoviesApi {
-    constructor(options) {
-        this._url = options.url;
-        this.headers = options.headers;
+    constructor({ url, headers }) {
+        this._url = url;
+        this.headers = headers;
     }
 
     _checkResponse(res) {
@@ -12,7 +12,7 @@ class MoviesApi {
     }
 
     getMovies() {
-        return fetch(`${this._url}`, {
+        return fetch(`${this._url}/beatfilm-movies`, {
             method: 'GET',
             headers: this.headers
         })
@@ -21,7 +21,7 @@ class MoviesApi {
 }
 
 const moviesApi = new MoviesApi ({
-    url: 'https://api.nomoreparties.co/beatfilm-movies',
+    url: 'https://api.nomoreparties.co',
     headers: {
       'Content-Type': 'application/json'
     }

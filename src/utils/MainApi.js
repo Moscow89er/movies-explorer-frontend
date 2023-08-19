@@ -59,12 +59,12 @@ class MainApi {
         .then(this._checkResponse)
     }
 
-    getMovies(token) {
+    getMovies() {
         return fetch(`${this._url}/movies`, {
             method: 'GET',
             headers: {
                 ...this.headers,
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then(this._checkResponse)
@@ -73,7 +73,10 @@ class MainApi {
     saveMovie(movie) {
         return fetch(`${this._url}/movies`, {
             method: 'POST',
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            },
             body: JSON.stringify(movie)
         })
         .then(this._checkResponse)

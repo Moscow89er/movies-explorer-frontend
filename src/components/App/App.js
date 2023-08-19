@@ -83,21 +83,7 @@ function App() {
       } else {
         setIsloading(true);
         moviesApi.getMovies()
-          .then((moviesData) => {
-            const movies = moviesData.map(movie => ({
-              country: movie.country,
-              director: movie.director,
-              duration: movie.duration,
-              year: movie.year,
-              description: movie.description,
-              image: movie.image.url,
-              trailerLink: movie.trailerLink,
-              nameRU: movie.nameRU,
-              nameEN: movie.nameEN,
-              thumbnail: movie.image.formats.thumbnail.url,
-              movieId: movie.id,
-              owner: currentUser._id
-            }));
+          .then((movies) => {
             setMovies(movies);
             localStorage.setItem('movies', JSON.stringify(movies));
           })
@@ -114,16 +100,13 @@ function App() {
   }, [movies, searchKeyword, isShortMoviesChecked])
 
   const handleLikeClick = (movie) => {
-    if (!currentUser._id) {
-      console.error("ID пользователя не установлен");
-      return;
-    }
+    const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
 
-    const isMovieSaved = savedMovies.some((item) => item.movieId === movie.id);
+    console.log(movies)
+
+    console.log(currentUser);
 
     console.log('Ты кликнул, чтобы сохранить фильм')
-
-    console.log(movie)
 
     if (!isMovieSaved) {
       mainApi
@@ -133,16 +116,16 @@ function App() {
           duration: movie.duration,
           year: movie.year,
           description: movie.description,
-          image: movie.image ? movie.image.url : '',
+          image: moviesApi._url + movie.image.url,
           trailerLink: movie.trailerLink,
           nameRU: movie.nameRU,
           nameEN: movie.nameEN,
-          thumbnail: movie.image && movie.image.formats ? movie.image.formats.thumbnail.url : '',
+          thumbnail: moviesApi._url + movie.image.formats.thumbnail.url,
           movieId: movie.id,
           owner: currentUser._id
         })
         .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
-        .catch((err) => console.log(err, err.status, err.message))
+        .catch((err) => console.log(err))
     }
   }
 
@@ -170,8 +153,8 @@ function App() {
       let jwt = localStorage.getItem('jwt');
       mainApi 
         .getUserInfo(jwt)
-        .then((res) => {
-          const { _id, name, email } = res;
+        .then((data) => {
+          const { _id, name, email } = data;
           setLoggedIn(true);
           setCurrentUser({ _id, name, email });
         })

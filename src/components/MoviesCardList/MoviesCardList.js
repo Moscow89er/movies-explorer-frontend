@@ -1,4 +1,5 @@
 import React from "react";
+import moviesApi from "../../utils/MoviesApi";
 
 function MoviesCardList ({ movies, parentComponent, onMovieSave }) {
     const handleLikeClick = (movie) => {
@@ -8,12 +9,10 @@ function MoviesCardList ({ movies, parentComponent, onMovieSave }) {
     return (
         <ul className="movies-cardlist">
             {movies.map((movie) => {
-                const imageUrl = `https://api.nomoreparties.co${movie.image}`;
-
                 return (
-                    <li className="movies-card" key={movie.movieId}>
+                    <li className="movies-card" key={movie.id ?? movie.movieId}>
                         <img 
-                            src={imageUrl}
+                            src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
                             className="movies-card__pic"
                             alt={movie.nameRU}
                         />
