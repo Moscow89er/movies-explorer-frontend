@@ -13,7 +13,8 @@ function Movies ({
     setIsShortChecked,
     inputValue,
     setInputValue,
-    setSearchKeyword
+    setSearchKeyword,
+    onMovieSave
 }) {return (
         <main className="movies">
             <SearchForm
@@ -30,6 +31,7 @@ function Movies ({
                 parentComponent="Movies"
                 onLoadMore={onLoadMore}
                 cardsToShow={cardsToShow}
+                onMovieSave={onMovieSave}
             />}
             {movies && movies.length === 0 && 
             <div className="movies__popup">

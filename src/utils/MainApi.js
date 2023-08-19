@@ -11,14 +11,13 @@ class MainApi {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
-    setToken(token) {
-        this.headers.authorization = `Bearer ${token}`;
-    }
-
-    getUserInfo() {
+    getUserInfo(token) {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this.headers
+            headers: {
+                ...this.headers,
+                'Authorization': `Bearer ${token}`
+            }
         })
         .then(this._checkResponse)
     }
@@ -35,7 +34,7 @@ class MainApi {
         .then(this._checkResponse)
     }
 
-    register({ name, email, password }) {
+    register(name, email, password) {
         return fetch(`${this._url}/signup`, {
             method: 'POST',
             headers: this.headers,
@@ -46,18 +45,9 @@ class MainApi {
             }),
         })
         .then(this._checkResponse)
-        .then((data) => {
-            if (data.token) {
-                this.setToken(data.token);
-                localStorage.setItem('jwt', data.token);
-                return data;
-            } else {
-                return;
-            }
-        })
     }
 
-    authorize({ email, password }) {
+    authorize(email, password) {
         return fetch(`${this._url}/signin`, {
             method: 'POST',
             headers: this.headers,
@@ -67,15 +57,34 @@ class MainApi {
             })
         })
         .then(this._checkResponse)
-        .then((data) => {
-            if (data.token) {
-                this.setToken(data.token);
-                localStorage.setItem('jwt', data.token);
-                return data;
-            } else {
-                return;
+    }
+
+    getMovies(token) {
+        return fetch(`${this._url}/movies`, {
+            method: 'GET',
+            headers: {
+                ...this.headers,
+                'Authorization': `Bearer ${token}`
             }
         })
+        .then(this._checkResponse)
+    }
+
+    saveMovie(movie) {
+        return fetch(`${this._url}/movies`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify(movie)
+        })
+        .then(this._checkResponse)
+    }
+
+    deleteMovie(movieId) {
+        return fetch(`${this._url}/movies/${movieId}`, {
+            method: 'DELETE',
+            headers: this.headers
+        })
+        .then(this._checkResponse)
     }
 }
 

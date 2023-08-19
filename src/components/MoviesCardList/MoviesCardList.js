@@ -1,6 +1,10 @@
 import React from "react";
 
-function MoviesCardList ({ movies, parentComponent }) {
+function MoviesCardList ({ movies, parentComponent, onMovieSave }) {
+    const handleLikeClick = (movie) => {
+        onMovieSave(movie);
+    }
+
     return (
         <ul className="movies-cardlist">
             {movies.map((movie) => {
@@ -17,7 +21,7 @@ function MoviesCardList ({ movies, parentComponent }) {
                             <h3 className="movies-card__title">{movie.nameRU}</h3>
                                 {parentComponent === "Movies" ? (
                                         <label className="movies-card__radio">
-                                            <input type="radio" className="movies-card__input"/>
+                                            <input type="radio" className="movies-card__input" onChange={() => handleLikeClick(movie)} />
                                             <span className="movies-card__circle" />
                                         </label>
                                 ) : (
