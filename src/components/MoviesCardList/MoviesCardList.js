@@ -3,13 +3,19 @@ import React from "react";
 import moviesApi from "../../utils/MoviesApi";
 
 function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
-
-
     const handleLikeClick = (movie) => {
-        onMovieSave(movie);
+    const isSavedInLocalStorage = localStorage.getItem(`movie_${movie.id}`) === 'true';
+    const isSaved = (savedMovies && savedMovies.some(item => item.movieId === movie.id)) || isSavedInLocalStorage;
+    
+    const newState = !isSaved;
+    localStorage.setItem(`movie_${movie.id}`, newState.toString());
+
+    onMovieSave(movie);
     }
 
     const handleDeleteClick = (movie) => {
+        localStorage.setItem(`movie_${movie.movieId}`, 'false');
+        console.log(movie);
         onMovieDelete(movie);
     }
 
@@ -22,7 +28,7 @@ function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete, 
     return (
         <ul className="movies-cardlist">
             {movies.map((movie) => {
-                const isMovieSaved = savedMovies && savedMovies.some(item => item.movieId === movie.id);
+                const isMovieSaved = (savedMovies && savedMovies.some(item => item.movieId === movie.id)) || (localStorage.getItem(`movie_${movie.id}`) === 'true');
                 return (
                     <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
                         <img 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
@@ -6,15 +7,9 @@ function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDel
     const [movies, setMovies] = useState([]);
     const [itemsToShow, setItemsToShow] = useState(16);
 
-    let resizeTimeout;
-
-    const handleResize = useCallback(() => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            setWindowDimensions(window.innerWidth);
-            resetItemsToShow();
-        }, 100)
-    }, [])
+    const handleResize = debounce(() => {
+        setWindowDimensions(window.innerWidth);
+    }, 200)
 
     const resetItemsToShow = useCallback(() => {
         let initialCount;
