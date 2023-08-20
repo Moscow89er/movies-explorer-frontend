@@ -5,6 +5,8 @@ import MoviesCard from "../MoviesContainer/MoviesContainer";
 function SavedMovies ({ 
     movies,
     isLoading,
+    hasSearched,
+    hasError,
     inputValue,
     setInputValue,
     setIsShortChecked,
@@ -23,6 +25,18 @@ function SavedMovies ({
             />
             <MoviesCard moviesData={movies} onMovieDelete={onMovieDelete} />
             {isLoading && <Preloader />}
+            {movies && movies.length === 0 && 
+            <div className="movies__popup">
+                <p className="movies__error-nothing">Ничего не найдено.</p>
+            </div>
+            }
+            {hasSearched && !isLoading && hasError && movies.length &&
+            <p className="movies__error">
+                Во время запроса произошла ошибка. Возможно,
+                проблема с соединением или сервер недоступен.
+                Подождите немного и попробуйте ещё раз.
+            </p>
+            }
         </main>
     )
 }

@@ -18,6 +18,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
         if (!inputValue) {
             setSearchError("Нужно ввести ключевое слово");
         } else {
+            console.log('Ты кликнул на кнопку!')
             setSearchError("");
             handleSearchButtonClick(inputValue);
         }

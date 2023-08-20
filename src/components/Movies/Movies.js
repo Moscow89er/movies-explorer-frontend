@@ -25,7 +25,7 @@ function Movies ({
                 setSearchKeyword={setSearchKeyword}
             />
             {isLoading && <Preloader />}
-            {hasSearched && !isLoading && !hasError && movies.length > 0 && 
+            {hasSearched && !isLoading && !hasError && movies?.length > 0 && 
             <MoviesCard
                 moviesData={movies}
                 parentComponent="Movies"

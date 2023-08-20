@@ -26,12 +26,12 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) ?? []);
+  const [movies, setMovies] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [moviesInputValue, setMoviesInputValue] = useState(localStorage.getItem('searchKeyword') ?? "");
   const [isShortMoviesChecked, setIsShortMoviesChecked] = useState(JSON.parse(localStorage.getItem('isShortMoviesChecked')) ?? false);
 
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState(null);
   const [savedMoviesSearchKeyword, setSavedMoviesSearchKeyword] = useState("");
   const [savedMoviesInputValue, setSavedMoviesInputValue] = useState("");
   const [isShortSavedMoviesChecked, setIsShortSavedMoviesChecked] = useState(false);
@@ -43,12 +43,12 @@ function App() {
     ? "page page__movies-bg"
     : "page";
 
-  const removeAllMoviesData = () => localStorage.removeItem('movies');
+  const removeMoviesData = () => localStorage.removeItem('movies');
 
   useEffect(() => {
-      window.addEventListener('beforeunload', removeAllMoviesData);
+      window.addEventListener('beforeunload', removeMoviesData);
       return () => {
-          window.removeEventListener('beforeunload', removeAllMoviesData);
+          window.removeEventListener('beforeunload', removeMoviesData);
       }
   }, [])
 
@@ -56,13 +56,60 @@ function App() {
     if (loggedIn) {
       mainApi
         .getMovies()
-        .then((movies) => setSavedMovies(movies))
+        .then((movies) => setSavedMovies(movies.reverse()))
         .catch((err) => {
           setHasError(err);
           console.log(err);
         })
     }
   }, [loggedIn])
+
+  const handleLikeMovie = (movie) => {
+    const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
+
+    if (!isMovieSaved) {
+      mainApi
+        .saveMovie({
+          country: movie.country,
+          director: movie.director,
+          duration: movie.duration,
+          year: movie.year,
+          description: movie.description,
+          image: moviesApi._url + movie.image.url,
+          trailerLink: movie.trailerLink,
+          nameRU: movie.nameRU,
+          nameEN: movie.nameEN,
+          thumbnail: moviesApi._url + movie.image.formats.thumbnail.url,
+          movieId: movie.id,
+          owner: currentUser._id
+        })
+        .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
+        .catch((err) => console.log(err))
+    } else {
+      const savedMovieId = savedMovies.find(
+        (item) => item.movieId === movie.id
+      )._id;
+      mainApi
+      .deleteMovie(savedMovieId)
+      .then(() => {
+        setSavedMovies((state) => 
+          state.filter((item) => item.movieId !== movie.movieId)
+        )
+      })
+      .catch((err) => console.log(err));
+    }
+  }
+
+  const handleDeleteMovie = (movie) => {
+    mainApi
+      .deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies((state) => 
+          state.filter((item) => item.movieId !== movie.movieId)
+        )
+      })
+      .catch((err) => console.log(err));
+  }
 
   useEffect(() => {
     if(loggedIn) {
@@ -99,41 +146,6 @@ function App() {
     }
   }, [movies, searchKeyword, isShortMoviesChecked])
 
-  const handleLikeMovie = (movie) => {
-    const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
-
-    if (!isMovieSaved) {
-      mainApi
-        .saveMovie({
-          country: movie.country,
-          director: movie.director,
-          duration: movie.duration,
-          year: movie.year,
-          description: movie.description,
-          image: moviesApi._url + movie.image.url,
-          trailerLink: movie.trailerLink,
-          nameRU: movie.nameRU,
-          nameEN: movie.nameEN,
-          thumbnail: moviesApi._url + movie.image.formats.thumbnail.url,
-          movieId: movie.id,
-          owner: currentUser._id
-        })
-        .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
-        .catch((err) => console.log(err))
-    }
-  }
-
-  const handleDeleteMovie = (movie) => {
-    mainApi
-      .deleteMovie(movie._id)
-      .then(() => {
-        setSavedMovies((state) => 
-          state.filter((item) => item.movieId !== movie.movieId)
-        )
-      })
-      .catch((err) => console.log(err))
-  }
-
   const filterMovies = useCallback((movies, searchKeyword, isShortMoviesChecked) => {
     if (!movies) {
       return null;
@@ -164,8 +176,6 @@ function App() {
           setCurrentUser({ _id, name, email });
         })
         .catch(err => console.log(err));
-    } else {
-      signOut();
     }
   }, [])
 
