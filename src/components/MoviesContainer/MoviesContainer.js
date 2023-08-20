@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDelete }) {
+function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
     const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
     const [movies, setMovies] = useState([]);
     const [itemsToShow, setItemsToShow] = useState(16);
 
     let resizeTimeout;
 
-    function handleResize() {
+    const handleResize = useCallback(() => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             setWindowDimensions(window.innerWidth);
             resetItemsToShow();
         }, 100)
-    }
+    }, [])
 
-    function resetItemsToShow() {
+    const resetItemsToShow = useCallback(() => {
         let initialCount;
         if (windowDimensions > 780) {
             initialCount = 16;
@@ -26,9 +26,9 @@ function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDel
             initialCount = 5;
         }
         setItemsToShow(prev => Math.min(Math.max(prev, initialCount), movies.length));
-    }
+    }, [movies.length, windowDimensions])
 
-    function handleLoadMore() {
+    const handleLoadMore = () => {
         if (windowDimensions > 768) {
             setItemsToShow(itemsToShow + 4);
         } else if (windowDimensions > 480) {
@@ -41,7 +41,7 @@ function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDel
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [])
+    }, [handleResize])
 
     useEffect(() => {
         if (moviesData) {
@@ -51,11 +51,17 @@ function MoviesContainer ({ moviesData, parentComponent, onMovieSave, onMovieDel
 
     useEffect(() => {
         resetItemsToShow();
-    }, [movies, windowDimensions])
+    }, [movies, resetItemsToShow, windowDimensions])
     
     return (
         <section className="movies-container">
-                <MoviesCardList movies={movies ? movies.slice(0, itemsToShow) : []} parentComponent={parentComponent} onMovieSave={onMovieSave} onMovieDelete={onMovieDelete} />
+                <MoviesCardList
+                    movies={movies ? movies.slice(0, itemsToShow) : []}
+                    parentComponent={parentComponent}
+                    onMovieSave={onMovieSave}
+                    onMovieDelete={onMovieDelete}
+                    savedMovies={savedMovies}
+                />
                 {(movies.length > itemsToShow && parentComponent === 'Movies') ? (
                     <button 
                         style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}

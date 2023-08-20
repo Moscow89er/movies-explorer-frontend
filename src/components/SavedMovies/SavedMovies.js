@@ -12,7 +12,8 @@ function SavedMovies ({
     setIsShortChecked,
     isShortChecked,
     setSearchKeyword,
-    onMovieDelete
+    onMovieDelete,
+    savedMovies
 }) {
     return (
         <main className="saved-movies">
@@ -23,7 +24,7 @@ function SavedMovies ({
                 isShortChecked={isShortChecked}
                 setSearchKeyword={setSearchKeyword}
             />
-            <MoviesCard moviesData={movies} onMovieDelete={onMovieDelete} />
+            <MoviesCard moviesData={movies} onMovieDelete={onMovieDelete} savedMovies={savedMovies} />
             {isLoading && <Preloader />}
             {movies && movies.length === 0 && 
             <div className="movies__popup">

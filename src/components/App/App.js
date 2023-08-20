@@ -62,7 +62,7 @@ function App() {
           console.log(err);
         })
     }
-  }, [loggedIn])
+  }, [loggedIn, savedMovies])
 
   const handleLikeMovie = (movie) => {
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
@@ -93,7 +93,7 @@ function App() {
       .deleteMovie(savedMovieId)
       .then(() => {
         setSavedMovies((state) => 
-          state.filter((item) => item.movieId !== movie.movieId)
+          state.filter((item) => item.movieId !== movie.Id)
         )
       })
       .catch((err) => console.log(err));
@@ -307,6 +307,7 @@ function App() {
               isShortChecked={isShortSavedMoviesChecked}
               setSearchKeyword={setSavedMoviesSearchKeyword}
               onMovieDelete={handleDeleteMovie}
+              savedMovies={savedMovies}
             />}
           />
           <Route 
