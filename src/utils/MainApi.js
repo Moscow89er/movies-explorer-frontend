@@ -25,7 +25,10 @@ class MainApi {
     editUserInfo(userData) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: this.headers,
+            headers: {
+                ...this.headers,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            },
             body: JSON.stringify({
                 name: userData.name,
                 email: userData.email

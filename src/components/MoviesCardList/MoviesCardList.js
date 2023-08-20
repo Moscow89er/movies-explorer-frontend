@@ -6,16 +6,13 @@ function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete, 
     const handleLikeClick = (movie) => {
     const isSavedInLocalStorage = localStorage.getItem(`movie_${movie.id}`) === 'true';
     const isSaved = (savedMovies && savedMovies.some(item => item.movieId === movie.id)) || isSavedInLocalStorage;
-    
     const newState = !isSaved;
     localStorage.setItem(`movie_${movie.id}`, newState.toString());
-
     onMovieSave(movie);
     }
 
     const handleDeleteClick = (movie) => {
         localStorage.setItem(`movie_${movie.movieId}`, 'false');
-        console.log(movie);
         onMovieDelete(movie);
     }
 
@@ -28,14 +25,24 @@ function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete, 
     return (
         <ul className="movies-cardlist">
             {movies.map((movie) => {
-                const isMovieSaved = (savedMovies && savedMovies.some(item => item.movieId === movie.id)) || (localStorage.getItem(`movie_${movie.id}`) === 'true');
+                const isMovieSaved = 
+                    (savedMovies && savedMovies.some(item => item.movieId === movie.id)) ||
+                    (localStorage.getItem(`movie_${movie.id}`) === 'true');
+
                 return (
                     <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
-                        <img 
-                            src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
-                            className="movies-card__pic"
-                            alt={movie.nameRU}
-                        />
+                        <a
+                            className="movies-card__link"
+                            href={movie.trailerLink}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img 
+                                src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
+                                className="movies-card__pic"
+                                alt={movie.nameRU}
+                            />
+                        </a> 
                         <div className="movies-card__container">
                             <h3 className="movies-card__title">{movie.nameRU}</h3>
                                 {parentComponent === "Movies" ? (
