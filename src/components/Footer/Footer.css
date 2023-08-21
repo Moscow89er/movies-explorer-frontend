@@ -1,0 +1,116 @@
+.footer {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background: #FAFAFA;
+}
+
+.footer__title {
+    width: 90%;
+    max-width: 1140px;
+    margin: 80px auto 0 auto;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #A0A0A0;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.footer__container {
+    width: 90%;
+    max-width: 1140px;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__year {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.footer__links {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.footer__link {
+    display: block;
+    margin: 0;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.footer__link:hover {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.footer__link:first-of-type {
+    margin-right: 20px;
+}
+
+@media (max-width: 920px) {
+    .footer {
+        background: #FAFAFA;
+    }
+
+    .footer__container {
+        width: 100%;
+        max-width: 708px;
+    }
+}
+
+@media (max-width: 730px) {
+    .footer__container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer__title {
+        font-size: 12px;
+        margin-top: 64px;
+    }
+
+    .footer__container {
+        margin: 0;
+        padding-top: 30px;
+        height: auto;
+        flex-direction: column-reverse;
+    }
+
+    .footer__links {
+        flex-direction: column;
+    }
+
+    .footer__link {
+        margin-top: 12px;
+    }
+
+    .footer__link:first-of-type {
+        font-size: 12px;
+        margin: auto;
+    }
+
+    .footer__year {
+        margin-top: 32px;
+        margin-bottom: 20px;
+        font-size: 12px;
+    }
+}

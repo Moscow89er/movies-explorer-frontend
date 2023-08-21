@@ -1,0 +1,131 @@
+.portfolio {
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background: #FAFAFA;
+}
+
+.portfolio__title {
+    color: #A0A0A0;
+    width: 90%;
+    max-width: 1140px;
+    margin: 0;
+    padding-top: 90px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.portfolio__links {
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio__container {
+    margin: 0;
+    width: 90%;
+    max-width: 1140px;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #E8E8E8 solid 1px;
+}
+
+.portfolio__container:last-of-type {
+    border-bottom: none;
+    padding-bottom: 103px;
+}
+
+.portfolio__subtitle {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    color: #000;
+}
+
+.portfolio__link {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1140px;
+    height: auto;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.portfolio__image {
+    background-image: url(../../images/portfolio_arrow_logo.svg);
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 30px;
+    margin: 44px 0 auto auto;
+}
+
+.portfolio__container:hover .portfolio__subtitle,
+.portfolio__container:hover .portfolio__image,
+.portfolio__container:hover .portfolio__link {
+    transition: 1s linear 0.03s;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.portfolio__container:hover .portfolio__image {
+    background-image: url(../../images/portfolio_arrow_logo_hovered.svg);
+}
+
+@media (max-width: 920px) {
+    .portfolio__title {
+        max-width: 668px;
+        padding-top: 80px;
+    }
+
+    .portfolio__container {
+        max-width: 668px;
+    }
+
+    .portfolio__subtitle {
+        font-size: 26px;
+    }
+
+    .portfolio__container:last-of-type {
+        padding-bottom: 67px;
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio__title {
+        padding-top: 60px;
+        padding-bottom: 22px;
+        font-size: 14px;
+    }
+
+    .portfolio__container {
+        height: 66px;
+    }
+
+    .portfolio__subtitle {
+        font-size: 17px;
+    }
+
+    .portfolio__image {
+        width: 12px;
+        height: 12px;
+        margin: auto 0 auto auto;
+        background-size: 12px 12px;
+    }
+
+    .portfolio__container:last-of-type {
+        padding-bottom: 66px;
+    }
+}
