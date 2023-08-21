@@ -13,7 +13,8 @@ function Movies ({
     inputValue,
     setInputValue,
     setSearchKeyword,
-    onMovieSave
+    onMovieSave,
+    savedMovies
 }) {return (
         <main className="movies">
             <SearchForm
@@ -29,6 +30,7 @@ function Movies ({
                 moviesData={movies}
                 parentComponent="Movies"
                 onMovieSave={onMovieSave}
+                savedMovies={savedMovies}
             />}
             {movies && movies.length === 0 && 
             <div className="movies__popup">

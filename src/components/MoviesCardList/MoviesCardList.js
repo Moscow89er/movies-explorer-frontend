@@ -40,14 +40,14 @@ function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDele
 
     useEffect(() => {
         resetItemsToShow();
-    }, [resetItemsToShow, windowDimensions])
+    }, [resetItemsToShow])
 
     return (
         <section className="movies-container">
             <ul className="movies-cardlist">
             {moviesData.slice(0, itemsToShow).map((movie) => (
                 <MoviesCard
-                    key={`${movie.id}-${movie.name}`}
+                    key={movie.id ?? movie.movieId}
                     movie={movie}
                     parentComponent={parentComponent}
                     onMovieSave={onMovieSave}

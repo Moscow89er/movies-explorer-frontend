@@ -13,8 +13,7 @@ function SavedMovies ({
     setIsShortChecked,
     isShortChecked,
     setSearchKeyword,
-    onMovieDelete,
-    savedMovies
+    onMovieDelete
 }) {
     return (
         <main className="saved-movies">
@@ -29,7 +28,6 @@ function SavedMovies ({
                 moviesData={movies}
                 parentComponent="SavedMovies"
                 onMovieDelete={onMovieDelete}
-                savedMovies={savedMovies} 
             />
             {isLoading && <Preloader />}
             {movies && movies.length === 0 && 

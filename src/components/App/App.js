@@ -52,18 +52,6 @@ function App() {
       }
   }, [])
 
-  useEffect(() => {
-    if (loggedIn) {
-      mainApi
-        .getMovies()
-        .then((movies) => setSavedMovies(movies.reverse()))
-        .catch((err) => {
-          setHasError(err);
-          console.log(err);
-        })
-    }
-  }, [loggedIn, savedMovies])
-
   const handleLikeMovie = (movie) => {
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
 
@@ -83,18 +71,20 @@ function App() {
           movieId: movie.id,
           owner: currentUser._id
         })
-        .then((savedMovie) => setSavedMovies([savedMovie, ...savedMovies]))
+        .then((savedMovie) => {
+          setSavedMovies([savedMovie, ...savedMovies])
+        })
         .catch((err) => console.log(err))
     } else {
       const savedMovieId = savedMovies.find(
         (item) => item.movieId === movie.id
       )._id;
       mainApi
-      .deleteMovie(savedMovieId)
-      .then(() => {
-        setSavedMovies((state) => 
-          state.filter((item) => item.movieId !== movie.Id)
-        )
+        .deleteMovie(savedMovieId)
+        .then(() => {
+          setSavedMovies((state) => 
+            state.filter((item) => item.movieId !== movie.id)
+          )
       })
       .catch((err) => console.log(err));
     }
@@ -110,6 +100,18 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getMovies()
+        .then((movies) => setSavedMovies(movies.reverse()))
+        .catch((err) => {
+          setHasError(err);
+          console.log(err);
+        })
+    }
+  }, [loggedIn])
 
   useEffect(() => {
     if(loggedIn) {
@@ -287,6 +289,7 @@ function App() {
               isShortChecked={isShortMoviesChecked}
               setSearchKeyword={setSearchKeyword}
               onMovieSave={handleLikeMovie}
+              savedMovies={savedMovies}
             />}
           />
           <Route
@@ -307,7 +310,6 @@ function App() {
               isShortChecked={isShortSavedMoviesChecked}
               setSearchKeyword={setSavedMoviesSearchKeyword}
               onMovieDelete={handleDeleteMovie}
-              savedMovies={savedMovies}
             />}
           />
           <Route 

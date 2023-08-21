@@ -1,15 +1,15 @@
-import React, { useCallback } from "react";
+import React from "react";
 import moviesApi from "../../utils/MoviesApi";
 
 function MoviesCard ({ movie, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
-    const handleLikeClick = useCallback(() => {
+    const handleLikeClick = () => {
         onMovieSave(movie);
-    }, [onMovieSave, movie])
+    }
 
-    const handleDeleteClick = useCallback(() => {
+    const handleDeleteClick = () => {
         onMovieDelete(movie);
-    }, [onMovieDelete, movie])
+    }
 
     const timeFormat = (time) => {
         const minutes = time % 60;
@@ -18,7 +18,7 @@ function MoviesCard ({ movie, parentComponent, onMovieSave, onMovieDelete, saved
     }
 
     return (
-        <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
+        <li className="movies-card">
             <a
                 className="movies-card__link"
                 href={movie.trailerLink}
