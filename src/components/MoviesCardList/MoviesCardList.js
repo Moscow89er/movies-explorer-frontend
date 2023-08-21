@@ -1,71 +1,72 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-import moviesApi from "../../utils/MoviesApi";
+function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
+    const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
+    const [itemsToShow, setItemsToShow] = useState(16);
 
-function MoviesCardList ({ movies, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
-    const handleLikeClick = (movie) => {
-    const isSavedInLocalStorage = localStorage.getItem(`movie_${movie.id}`) === 'true';
-    const isSaved = (savedMovies && savedMovies.some(item => item.movieId === movie.id)) || isSavedInLocalStorage;
-    const newState = !isSaved;
-    localStorage.setItem(`movie_${movie.id}`, newState.toString());
-    onMovieSave(movie);
+    const handleResize = debounce(() => {
+        setWindowDimensions(window.innerWidth);
+    }, 200)
+
+    const resetItemsToShow = useCallback(() => {
+        let initialCount;
+        if (windowDimensions > 780) {
+            initialCount = 16;
+        } else if (windowDimensions > 480) {
+            initialCount = 8;
+        } else {
+            initialCount = 5;
+        }
+        setItemsToShow(prev => Math.min(Math.max(prev, initialCount), moviesData.length));
+    }, [moviesData.length, windowDimensions])
+
+    const handleLoadMore = () => {
+        if (windowDimensions > 768) {
+            setItemsToShow(itemsToShow + 4);
+        } else if (windowDimensions > 480) {
+            setItemsToShow(itemsToShow + 4);
+        } else {
+            setItemsToShow(itemsToShow + 2);
+        }
     }
 
-    const handleDeleteClick = (movie) => {
-        localStorage.setItem(`movie_${movie.movieId}`, 'false');
-        onMovieDelete(movie);
-    }
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [handleResize])
 
-    const timeFormat = (time) => {
-        const minutes = time % 60;
-        const hour = Math.floor(time / 60);
-        return hour ? `${hour}ч ${minutes}м` : `${minutes}м`;
-    }
+
+    useEffect(() => {
+        resetItemsToShow();
+    }, [resetItemsToShow, windowDimensions])
 
     return (
-        <ul className="movies-cardlist">
-            {movies.map((movie) => {
-                const isMovieSaved = 
-                    (savedMovies && savedMovies.some(item => item.movieId === movie.id)) ||
-                    (localStorage.getItem(`movie_${movie.id}`) === 'true');
-
-                return (
-                    <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
-                        <a
-                            className="movies-card__link"
-                            href={movie.trailerLink}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <img 
-                                src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
-                                className="movies-card__pic"
-                                alt={movie.nameRU}
-                            />
-                        </a> 
-                        <div className="movies-card__container">
-                            <h3 className="movies-card__title">{movie.nameRU}</h3>
-                                {parentComponent === "Movies" ? (
-                                        <label className="movies-card__radio">
-                                            <input
-                                                type="checkbox"
-                                                className="movies-card__input"
-                                                checked={isMovieSaved}
-                                                onChange={() => handleLikeClick(movie)}
-                                                autoComplete="off"
-                                            />
-                                            <span className="movies-card__circle" />
-                                        </label>
-                                ) : (
-                                    <button className="movies-card__button-delete" onClick={() => handleDeleteClick(movie)}></button>
-                                )}
-                        </div>
-                        <p className="movies-card__duration">{timeFormat(movie.duration)}</p>
-                    </li>
-                    )
-                })
-            }
-        </ul>
+        <section className="movies-container">
+            <ul className="movies-cardlist">
+            {moviesData.slice(0, itemsToShow).map((movie) => (
+                <MoviesCard
+                    key={movie.id}
+                    movie={movie}
+                    parentComponent={parentComponent}
+                    onMovieSave={onMovieSave}
+                    onMovieDelete={onMovieDelete}
+                    savedMovies={savedMovies}
+                />
+            ))}
+            </ul>
+            {(moviesData.length > itemsToShow && parentComponent === 'Movies') && (
+                <button 
+                    style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}
+                    type="button"
+                    className="movies-container__button"
+                    onClick={handleLoadMore}
+                >
+                    Ещё
+                </button>
+            )}
+        </section>
     )
 }
 

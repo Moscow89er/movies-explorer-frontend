@@ -7,4 +7,4 @@ const ProtectedRoute = ({ element: Component, loggedIn, ...props }) => {
     )
 }
 
-export default ProtectedRoute;
+export default React.memo(ProtectedRoute);

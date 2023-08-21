@@ -1,15 +1,57 @@
-import MoviesContainer from "../MoviesContainer/MoviesContainer";
+import React, { useCallback } from "react";
+import moviesApi from "../../utils/MoviesApi";
 
-function MoviesCard ({ moviesData, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
+function MoviesCard ({ movie, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
+    console.log(movie);
+
+    const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
+    const handleLikeClick = useCallback(() => {
+        onMovieSave(movie);
+    }, [onMovieSave, movie])
+
+    const handleDeleteClick = useCallback(() => {
+        onMovieDelete(movie);
+    }, [onMovieDelete, movie])
+
+    const timeFormat = (time) => {
+        const minutes = time % 60;
+        const hour = Math.floor(time / 60);
+        return hour ? `${hour}ч ${minutes}м` : `${minutes}м`;
+    }
+
     return (
-        <MoviesContainer
-            moviesData={moviesData}
-            parentComponent={parentComponent}
-            onMovieSave={onMovieSave}
-            onMovieDelete={onMovieDelete}
-            savedMovies={savedMovies}
-        />
+        <li className="movies-card" key={`${movie.id}_${movie.nameRU}`}>
+            <a
+                className="movies-card__link"
+                href={movie.trailerLink}
+                target="_blank"
+                rel="noreferrer"
+            >
+                <img 
+                    src={movie.image.url ? moviesApi._url + movie.image.url : movie.image}
+                    className="movies-card__pic"
+                    alt={movie.nameRU}
+                />
+            </a> 
+            <div className="movies-card__container">
+                <h3 className="movies-card__title">{movie.nameRU}</h3>
+                    {parentComponent === "Movies" ? (
+                    <button
+                        className={
+                            isMovieSaved
+                                ? 'movies-card__button-like_active'
+                                : 'movies-card__button-like'
+                        }
+                        onClick={handleLikeClick}
+                        type='button'
+                    ></button>
+                    ) : (
+                        <button className="movies-card__button-delete" onClick={handleDeleteClick}></button>
+                    )}
+            </div>
+            <p className="movies-card__duration">{timeFormat(movie.duration)}</p>
+        </li>
     )
 }
 
-export default MoviesCard;
+export default React.memo(MoviesCard);

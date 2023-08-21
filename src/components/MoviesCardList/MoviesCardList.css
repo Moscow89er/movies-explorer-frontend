@@ -55,48 +55,29 @@
     line-height: normal;
 }
 
-.movies-card__input {
-	position: absolute;
-	z-index: -1;
-	opacity: 0;
-	margin: auto;
-}
-
-.movies-card__circle {
-    display: block;
-	position: relative;
-	cursor: pointer;
+.movies-card__button-like {
+    display: inline-block;
+    cursor: pointer;
     width: 16px;
     height: 16px;
+    border: 1px solid #CDD1DA;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: .2s;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
 }
 
-.movies-card__circle:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: 1px solid #CDD1DA;
-	border-radius: 50%;
-}
-
-.movies-card__circle:after {
-	content: '';
-	position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 12px;
-    height: 12px;
-	border-radius: 50%;
-	background: #2BE080;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
-	opacity: 0;
-	transition: .2s;
-}
-
-.movies-card__input:checked + .movies-card__circle:after {
-	opacity: 1;
+.movies-card__button-like_active {
+    display: inline-block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #CDD1DA;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: .2s;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
+    background-color: #2BE080;
 }
 
 .movies-card__duration {
@@ -123,6 +104,38 @@
 .movies-card__button-delete:hover {
     transition: 1s linear 0.03s;
     background-image: url("../../images/movies_card_list_delete_icon_hovered.svg");
+}
+
+.movies-container {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #FAFAFA;
+}
+
+.movies-container__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 1140px;
+    height: 36px;
+    margin: 50px auto 80px;
+    background: #f4f4f4;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.movies-container__button:hover {
+    transition: 1s linear 0.03s;
+    background: rgba(244, 244, 244, 0.4);
+    color: rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 920px) {
@@ -167,5 +180,9 @@
 
     .movies-card__pic {
         height: 168px;
+    }
+
+    .movies-container__button {
+        margin: 50px auto 95px;
     }
 }

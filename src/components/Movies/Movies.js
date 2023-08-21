@@ -1,6 +1,7 @@
+import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
-import MoviesCard from "../MoviesContainer/MoviesContainer";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies ({ 
     movies,
@@ -26,11 +27,9 @@ function Movies ({
             />
             {isLoading && <Preloader />}
             {hasSearched && !isLoading && !hasError && movies?.length > 0 && 
-            <MoviesCard
+            <MoviesCardList
                 moviesData={movies}
                 parentComponent="Movies"
-                onLoadMore={onLoadMore}
-                cardsToShow={cardsToShow}
                 onMovieSave={onMovieSave}
             />}
             {movies && movies.length === 0 && 
@@ -49,4 +48,4 @@ function Movies ({
     )
 }
 
-export default Movies;
+export default React.memo(Movies);

@@ -1,6 +1,7 @@
+import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
-import MoviesCard from "../MoviesContainer/MoviesContainer";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function SavedMovies ({ 
     movies,
@@ -17,14 +18,19 @@ function SavedMovies ({
 }) {
     return (
         <main className="saved-movies">
-            <SearchForm 
+            <SearchForm
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 setIsShortChecked={setIsShortChecked}
                 isShortChecked={isShortChecked}
                 setSearchKeyword={setSearchKeyword}
             />
-            <MoviesCard moviesData={movies} onMovieDelete={onMovieDelete} savedMovies={savedMovies} />
+            <MoviesCardList
+                moviesData={movies}
+                parentComponent="SavedMovies"
+                onMovieDelete={onMovieDelete}
+                savedMovies={savedMovies} 
+            />
             {isLoading && <Preloader />}
             {movies && movies.length === 0 && 
             <div className="movies__popup">
@@ -42,4 +48,4 @@ function SavedMovies ({
     )
 }
 
-export default SavedMovies;
+export default React.memo(SavedMovies);
