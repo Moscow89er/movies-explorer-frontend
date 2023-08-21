@@ -47,7 +47,7 @@ function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDele
             <ul className="movies-cardlist">
             {moviesData.slice(0, itemsToShow).map((movie) => (
                 <MoviesCard
-                    key={movie.id}
+                    key={`${movie.id}-${movie.name}`}
                     movie={movie}
                     parentComponent={parentComponent}
                     onMovieSave={onMovieSave}

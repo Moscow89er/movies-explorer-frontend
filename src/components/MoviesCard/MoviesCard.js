@@ -2,8 +2,6 @@ import React, { useCallback } from "react";
 import moviesApi from "../../utils/MoviesApi";
 
 function MoviesCard ({ movie, parentComponent, onMovieSave, onMovieDelete, savedMovies }) {
-    console.log(movie);
-
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
     const handleLikeClick = useCallback(() => {
         onMovieSave(movie);

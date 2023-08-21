@@ -8,8 +8,6 @@ function Movies ({
     isLoading,
     hasSearched,
     hasError,
-    onLoadMore,
-    cardsToShow,
     isShortChecked,
     setIsShortChecked,
     inputValue,

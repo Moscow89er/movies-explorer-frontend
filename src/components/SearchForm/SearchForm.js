@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
 function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputValue, setSearchKeyword }) {
+    const [localInputValue, setLocalInputValue] = useState(inputValue || "");
+    // const [localIsShortChecked, setLocalIsShortChecked] = useState(isShortChecked);
     const [searchError, setSearchError] = useState("");
 
     const handleSearchInput = (evt) => {
-        setInputValue(evt.target.value);
+        setLocalInputValue(evt.target.value);
     }
 
     function handleCheckboxChange() {
@@ -15,10 +17,12 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
 
     const handleSearch = (evt) => {
         evt.preventDefault();
-        if (!inputValue) {
+        if (!localInputValue) {
             setSearchError("Нужно ввести ключевое слово");
         } else {
             setSearchError("");
+            setInputValue(localInputValue);
+            // setIsShortChecked(localIsShortChecked);
             handleSearchButtonClick(inputValue);
         }
     }
@@ -32,7 +36,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
                     className="search__input"
                     placeholder="Фильм"
                     onChange={handleSearchInput}
-                    value={inputValue || ""}
+                    value={localInputValue || ""}
                     required
                 />
                 <button type="submit" className="search__button" />
