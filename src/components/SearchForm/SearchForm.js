@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputValue, setSearchKeyword }) {
     const [localInputValue, setLocalInputValue] = useState(inputValue || "");
-    // const [localIsShortChecked, setLocalIsShortChecked] = useState(isShortChecked);
     const [searchError, setSearchError] = useState("");
+
+    useEffect(() => {
+        setLocalInputValue(inputValue);
+    }, [inputValue])
 
     const handleSearchInput = (evt) => {
         setLocalInputValue(evt.target.value);
     }
 
-    function handleCheckboxChange() {
+    const handleCheckboxChange = () => {
         setIsShortChecked(!isShortChecked);
     }
 
@@ -22,7 +25,6 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
         } else {
             setSearchError("");
             setInputValue(localInputValue);
-            // setIsShortChecked(localIsShortChecked);
             handleSearchButtonClick(inputValue);
         }
     }

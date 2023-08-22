@@ -1,8 +1,11 @@
+import { useLocation, Navigate } from "react-router-dom";
 import React from 'react';
 import FormContainer from "../FormContainer/FormContainer";
 import useFormValidator from "../../utils/useFormValidator";
 
-function Login({ onLogin }) {
+function Login({ onLogin, loggedIn }) {
+    const location = useLocation();
+
     const initialState = {
         email: "",
         password: ""
@@ -19,6 +22,10 @@ function Login({ onLogin }) {
         evt.preventDefault();
         onLogin(formValues);
     };
+
+    if (loggedIn) {
+        return <Navigate to="/movies" state={{ from: location }} replace />
+    }
 
     return (
         <FormContainer

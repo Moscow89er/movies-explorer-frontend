@@ -32,18 +32,18 @@ function Movies ({
                 onMovieSave={onMovieSave}
                 savedMovies={savedMovies}
             />}
-            {movies && movies.length === 0 && 
+            {movies && movies?.length === 0 && 
             <div className="movies__popup">
                 <p className="movies__error-nothing">Ничего не найдено.</p>
             </div>
             }
-            {hasSearched && !isLoading && hasError && movies.length &&
+            {hasSearched && !isLoading && hasError && movies?.length &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,
                 проблема с соединением или сервер недоступен.
                 Подождите немного и попробуйте ещё раз.
             </p>
-            } 
+            }
         </main>
     )
 }

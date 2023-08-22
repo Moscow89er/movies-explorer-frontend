@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -15,6 +16,16 @@ function SavedMovies ({
     setSearchKeyword,
     onMovieDelete
 }) {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === "/saved-movies") {
+            setInputValue("");
+            setIsShortChecked(false);
+            setSearchKeyword("");
+        }
+    }, [location.pathname, setInputValue, setIsShortChecked, setSearchKeyword]);
+
     return (
         <main className="saved-movies">
             <SearchForm

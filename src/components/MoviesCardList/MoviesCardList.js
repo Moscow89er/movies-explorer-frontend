@@ -19,8 +19,8 @@ function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDele
         } else {
             initialCount = 5;
         }
-        setItemsToShow(prev => Math.min(Math.max(prev, initialCount), moviesData.length));
-    }, [moviesData.length, windowDimensions])
+        setItemsToShow(prev => Math.min(Math.max(prev, initialCount), moviesData?.length));
+    }, [moviesData?.length, windowDimensions])
 
     const handleLoadMore = () => {
         if (windowDimensions > 768) {
@@ -45,7 +45,7 @@ function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDele
     return (
         <section className="movies-container">
             <ul className="movies-cardlist">
-            {moviesData.slice(0, itemsToShow).map((movie) => (
+            {moviesData?.slice(0, itemsToShow).map((movie) => (
                 <MoviesCard
                     key={movie.id ?? movie.movieId}
                     movie={movie}
@@ -56,7 +56,7 @@ function MoviesCardList ({ moviesData, parentComponent, onMovieSave, onMovieDele
                 />
             ))}
             </ul>
-            {(moviesData.length > itemsToShow && parentComponent === 'Movies') && (
+            {(moviesData?.length > itemsToShow && parentComponent === 'Movies') && (
                 <button 
                     style={parentComponent === "Movies" ? {} : {visibility: "hidden", margin: "50px auto 54px"}}
                     type="button"

@@ -197,13 +197,12 @@ function App() {
       })
   }  
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = async ({ email, password }) => {
     mainApi.authorize(email, password)
       .then((data) => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
           handleCheckToken();
-          navigate('/movies', {replace: true});
         }
       })
       .catch((err) => {
@@ -223,7 +222,7 @@ function App() {
     setIsShortMoviesChecked(false);
     setMoviesInputValue('');
     setLoggedIn(false);
-    navigate('/');
+    navigate('/', {replace: true});
   }
 
   const handleUpdateUser = (userData) => {
@@ -267,8 +266,8 @@ function App() {
         : renderHeaderAndFooter && <NavTab />}
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} />} />
-          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signup" element={<Register onRegister={handleRegister} loggedIn={loggedIn} />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} loggedIn={loggedIn} />} />
           <Route
             path="/movies"
             element={

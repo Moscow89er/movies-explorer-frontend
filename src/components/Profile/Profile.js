@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useFormValidator from "../../utils/useFormValidator";
 
@@ -9,6 +9,8 @@ function Profile ({ onSignOut, onUpdateUser }) {
         email: currentUser.email
     }
 
+    const [displayedName, setDisplayedName] = useState(currentUser.name);
+
     const {
         formValues,
         formErrors,
@@ -16,14 +18,20 @@ function Profile ({ onSignOut, onUpdateUser }) {
         handleInputChange
     } = useFormValidator(initialState);
 
+    const isFormChanged = () => {
+        return formValues.name !== currentUser.name ||
+        formValues.email !== currentUser.email;
+    }
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         onUpdateUser(formValues);
+        setDisplayedName(formValues.name);
     };
 
     return (
         <main className="profile">
-            <h2 className="profile__title">Привет, {formValues.name}!</h2> 
+            <h2 className="profile__title">Привет, {displayedName}!</h2> 
             <form className="profile__form" onSubmit={handleSubmit} noValidate>
                 <div className="profile__container">
                     <p className="profile__subtitle">Имя</p>
@@ -58,7 +66,7 @@ function Profile ({ onSignOut, onUpdateUser }) {
                     </div>
                 </div>
                 <button
-                    disabled={!isValid}
+                    disabled={!isValid || !isFormChanged()}
                     type="submit"
                     className={isValid ? "profile__button-edit" : "profile__button-edit_disabled"}
                 >
