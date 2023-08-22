@@ -25,6 +25,7 @@ function App() {
   const [isLoading, setIsloading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [tokenChecked, setTockenChecked] = useState(false);
 
   const [movies, setMovies] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
@@ -168,8 +169,8 @@ function App() {
   }, [])
 
   const handleCheckToken = useCallback(() => {
-    if (localStorage.getItem('jwt')) {
-      let jwt = localStorage.getItem('jwt');
+    let jwt = localStorage.getItem('jwt');
+    if (jwt) {
       mainApi 
         .getUserInfo(jwt)
         .then((data) => {
@@ -177,7 +178,12 @@ function App() {
           setLoggedIn(true);
           setCurrentUser({ _id, name, email });
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => {
+          setTockenChecked(true);
+        })
+    } else {
+      setTockenChecked(true);
     }
   }, [])
 
@@ -274,6 +280,7 @@ function App() {
             <ProtectedRoute 
               element={Movies}
               loggedIn={loggedIn}
+              tokenChecked={tokenChecked}
               movies={filterMovies(
                 movies,
                 searchKeyword,
@@ -297,6 +304,7 @@ function App() {
             <ProtectedRoute 
               element={SavedMovies}
               loggedIn={loggedIn}
+              tokenChecked={tokenChecked}
               movies={filterMovies(
                 savedMovies,
                 savedMoviesSearchKeyword,
@@ -315,8 +323,9 @@ function App() {
             path="/profile"
             element={
             <ProtectedRoute 
-              element={Profile} 
-              onSignOut={signOut} 
+              element={Profile}
+              onSignOut={signOut}
+              tokenChecked={tokenChecked}
               onUpdateUser={handleUpdateUser}
               loggedIn={loggedIn}
             />}
