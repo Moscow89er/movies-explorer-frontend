@@ -223,7 +223,7 @@ function App() {
     setIsShortMoviesChecked(false);
     setMoviesInputValue('');
     setLoggedIn(false);
-    navigate('/', {replace: true});
+    navigate('/');
   }
 
   const handleUpdateUser = (userData) => {

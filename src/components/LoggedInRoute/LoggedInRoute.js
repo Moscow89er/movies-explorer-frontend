@@ -8,7 +8,7 @@ const LoggedInRoute = ({ element: Component, loggedIn, tokenChecked, ...props })
     }
 
     return (
-        loggedIn ? <Navigate to="/movies" replace /> : <Component {...props} />
+        loggedIn ? <Navigate to="/movies" /> : <Component {...props} />
     )
 }
 
