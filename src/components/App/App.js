@@ -26,6 +26,7 @@ function App() {
   const [isLoading, setIsloading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [tokenChecked, setTockenChecked] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const [movies, setMovies] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState(localStorage.getItem('searchKeyword') ?? "");
@@ -182,6 +183,7 @@ function App() {
   }, [handleCheckToken])
 
   const handleRegister = ({ name, email, password }) => {
+    setSubmitting(true);
     mainApi.register(name, email, password)
       .then(() => {
         handleLogin({ email, password });
@@ -191,9 +193,11 @@ function App() {
         setIsInfoTooltipOpen(true);
         console.log(err);
       })
+      .finally(() => setSubmitting(false))
   }  
 
   const handleLogin = async ({ email, password }) => {
+    setSubmitting(true);
     mainApi.authorize(email, password)
       .then((data) => {
         if (data.token) {
@@ -206,6 +210,7 @@ function App() {
         setIsInfoTooltipOpen(true);
         console.log(err);
       })
+      .finally(() => setSubmitting(false))
   }
 
   const signOut = () => {
@@ -270,6 +275,7 @@ function App() {
                 onRegister={handleRegister}
                 loggedIn={loggedIn}
                 tokenChecked={tokenChecked}
+                isSubmitting={isSubmitting}
               />
             }
           />
@@ -281,6 +287,7 @@ function App() {
                 onLogin={handleLogin}
                 loggedIn={loggedIn}
                 tokenChecked={tokenChecked}
+                isSubmitting={isSubmitting}
               />
             }
           />

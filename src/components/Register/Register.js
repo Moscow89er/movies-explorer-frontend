@@ -1,11 +1,8 @@
 import React from 'react';
-import { useLocation, Navigate } from "react-router-dom";
 import FormContainer from "../FormContainer/FormContainer";
 import useFormValidator from "../../utils/useFormValidator";
 
-function Register({ onRegister, loggedIn }) {
-    const location = useLocation();
-
+function Register({ onRegister, loggedIn, isSubmitting }) {
     const initialState = {
         name: "",
         email: "",
@@ -19,10 +16,6 @@ function Register({ onRegister, loggedIn }) {
         onRegister(formValues);
     };
 
-    if (loggedIn) {
-        return <Navigate to="/movies" state={{ from: location }} replace />
-    }
-
     return (
         <FormContainer
             titleText="Добро пожаловать!"
@@ -32,6 +25,7 @@ function Register({ onRegister, loggedIn }) {
             link="/signin"
             linkText="Войти"
             isValid={isValid}
+            isSubmitting={isSubmitting}
         >
             <p className="form-container__subtitle">Имя</p>
             <div className="form-container__input-wrapper">

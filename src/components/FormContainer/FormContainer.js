@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function FormContainer({ titleText, buttonText, paragraphText, onSubmit, children, link, linkText, isValid }) {
+function FormContainer({ titleText, buttonText, paragraphText, onSubmit, children, link, linkText, isValid, isSubmitting }) {
     return (
         <main className="form-container">
             <div className="form-container__elements">
@@ -10,7 +10,7 @@ function FormContainer({ titleText, buttonText, paragraphText, onSubmit, childre
                 <form className="form-container__form" onSubmit={onSubmit} noValidate>
                     {children}
                     <button
-                        disabled={!isValid}
+                        disabled={!isValid || isSubmitting}
                         type="submit"
                         className={isValid ? "form-container__button-submit" : "form-container__button-submit_disabled"}
                     >
