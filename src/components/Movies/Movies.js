@@ -6,7 +6,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 function Movies ({ 
     movies,
     isLoading,
-    hasSearched,
     hasError,
     isShortChecked,
     setIsShortChecked,
@@ -15,7 +14,8 @@ function Movies ({
     setSearchKeyword,
     onMovieSave,
     savedMovies
-}) {return (
+}) {
+    return (
         <main className="movies">
             <SearchForm
                 isShortChecked={isShortChecked}
@@ -25,7 +25,7 @@ function Movies ({
                 setSearchKeyword={setSearchKeyword}
             />
             {isLoading && <Preloader />}
-            {hasSearched && !isLoading && !hasError && movies?.length > 0 && 
+            {!isLoading && !hasError && movies?.length > 0 && 
             <MoviesCardList
                 moviesData={movies}
                 parentComponent="Movies"
@@ -37,7 +37,7 @@ function Movies ({
                 <p className="movies__error-nothing">Ничего не найдено.</p>
             </div>
             }
-            {hasSearched && !isLoading && hasError && movies?.length &&
+            {!isLoading && hasError && movies?.length &&
             <p className="movies__error">
                 Во время запроса произошла ошибка. Возможно,
                 проблема с соединением или сервер недоступен.

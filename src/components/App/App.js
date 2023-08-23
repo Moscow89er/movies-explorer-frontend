@@ -15,6 +15,7 @@ import Header from "../Header/Header";
 import mainApi from "../../utils/MainApi";
 import moviesApi from "../../utils/MoviesApi";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import LoggedInRoute from "../LoggedInRoute/LoggedInRoute";
 
 function App() {
   const location = useLocation();
@@ -23,7 +24,6 @@ function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsloading] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [tokenChecked, setTockenChecked] = useState(false);
 
@@ -43,15 +43,6 @@ function App() {
     location.pathname === "/movies" || location.pathname === "/saved-movies"
     ? "page page__movies-bg"
     : "page";
-
-  const removeMoviesData = () => localStorage.removeItem('movies');
-
-  useEffect(() => {
-      window.addEventListener('beforeunload', removeMoviesData);
-      return () => {
-          window.removeEventListener('beforeunload', removeMoviesData);
-      }
-  }, [])
 
   const handleLikeMovie = (movie) => {
     const isMovieSaved = savedMovies ? savedMovies.some((item) => item.movieId === movie.id) : false;
@@ -143,7 +134,6 @@ function App() {
           })
           .finally(() => {
             setIsloading(false);
-            setHasSearched(true);
           });
       }
     }
@@ -272,8 +262,28 @@ function App() {
         : renderHeaderAndFooter && <NavTab />}
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<Register onRegister={handleRegister} loggedIn={loggedIn} />} />
-          <Route path="/signin" element={<Login onLogin={handleLogin} loggedIn={loggedIn} />} />
+          <Route
+            path="/signup"
+            element={
+              <LoggedInRoute
+                element={Register}
+                onRegister={handleRegister}
+                loggedIn={loggedIn}
+                tokenChecked={tokenChecked}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <LoggedInRoute
+                element={Login}
+                onLogin={handleLogin}
+                loggedIn={loggedIn}
+                tokenChecked={tokenChecked}
+              />
+            }
+          />
           <Route
             path="/movies"
             element={
@@ -287,7 +297,6 @@ function App() {
                 isShortMoviesChecked
               )}
               isLoading={isLoading}
-              hasSearched={hasSearched}
               hasError={hasError}
               inputValue={moviesInputValue}
               setInputValue={setMoviesInputValue}

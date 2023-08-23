@@ -25,7 +25,7 @@ function SearchForm ({ isShortChecked, setIsShortChecked, setInputValue, inputVa
         } else {
             setSearchError("");
             setInputValue(localInputValue);
-            handleSearchButtonClick(inputValue);
+            handleSearchButtonClick(localInputValue);
         }
     }
 
