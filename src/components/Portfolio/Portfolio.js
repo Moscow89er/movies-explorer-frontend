@@ -6,11 +6,11 @@ function Portfolio () {
                 <li className="portfolio__container">
                     <a 
                         className="portfolio__link"
-                        href="https://github.com/Moscow89er/how-to-learn/"
+                        href="https://moscow89er.github.io/budget-tracking-react/"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <h3 className="portfolio__subtitle">Статичный сайт</h3>
+                        <h3 className="portfolio__subtitle">Приложение по учету финансов</h3>
                         <div className="portfolio__image" />
                     </a>
                 </li>

@@ -17,7 +17,7 @@ function Promo () {
             <div className="promo__container">
                 <div className="promo__elements">
                     <div className="promo__text">
-                        <h2 className="promo__title">Учебный проект студента факультета Веб-разработки.</h2>
+                        <h2 className="promo__title">Проект Хубаева Никиты, совместно с Beat Films. React / Node.js</h2>
                         <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
                     </div>
                     <button className="promo__button" onClick={handleScrollToNextomponent}>Узнать больше</button>
