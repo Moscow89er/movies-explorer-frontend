@@ -61,10 +61,6 @@
     color: rgba(0, 0, 0, 0.4);
 }
 
-.footer__link:first-of-type {
-    margin-right: 20px;
-}
-
 @media (max-width: 920px) {
     .footer {
         background: #FAFAFA;
