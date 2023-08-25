@@ -1,25 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
-import MoviesCard from "../MoviesContainer/MoviesContainer";
-import { savedMovies } from "../../utils/data";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies () {
-    const [isLoading, setIsloading] = useState(false);
+function SavedMovies ({ 
+    movies,
+    isLoading,
+    hasSearched,
+    hasError,
+    inputValue,
+    setInputValue,
+    setIsShortChecked,
+    isShortChecked,
+    setSearchKeyword,
+    onMovieDelete
+}) {
+    const location = useLocation();
 
     useEffect(() => {
-        setTimeout(() => setIsloading(true), 2000);
-
-        setTimeout(() => setIsloading(false), 5000);
-    }, [])
+        if (location.pathname === "/saved-movies") {
+            setInputValue("");
+            setIsShortChecked(false);
+            setSearchKeyword("");
+        }
+    }, [location.pathname, setInputValue, setIsShortChecked, setSearchKeyword]);
 
     return (
         <main className="saved-movies">
-            <SearchForm />
-            <MoviesCard moviesData={savedMovies} />
+            <SearchForm
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                setIsShortChecked={setIsShortChecked}
+                isShortChecked={isShortChecked}
+                setSearchKeyword={setSearchKeyword}
+            />
+            <MoviesCardList
+                moviesData={movies}
+                parentComponent="SavedMovies"
+                onMovieDelete={onMovieDelete}
+            />
             {isLoading && <Preloader />}
+            {movies && movies.length === 0 && 
+            <div className="movies__popup">
+                <p className="movies__error-nothing">Ничего не найдено.</p>
+            </div>
+            }
+            {hasSearched && !isLoading && hasError && movies.length &&
+            <p className="movies__error">
+                Во время запроса произошла ошибка. Возможно,
+                проблема с соединением или сервер недоступен.
+                Подождите немного и попробуйте ещё раз.
+            </p>
+            }
         </main>
     )
 }
 
-export default SavedMovies;
+export default React.memo(SavedMovies);
